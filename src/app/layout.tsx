@@ -64,7 +64,11 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#3AB0FF" />
-        {/* Google Analytics */}
+      </head>
+      <body
+        className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
+      >
+        {/* Google tag (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
@@ -77,10 +81,6 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-      </head>
-      <body
-        className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
-      >
         <Header />
         <main className="min-h-screen">
           {children}
