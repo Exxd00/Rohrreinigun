@@ -2,7 +2,7 @@
 
 ## Übersicht
 - **Unternehmen:** Rohrreinigung Kraft
-- **Standort:** Nürnberg + 100km Umkreis
+- **Standort:** Nürnberg + 65km Umkreis
 - **Ziel:** Lead-Generierung (Anrufe + Kontaktformulare)
 - **Budget-Empfehlung:** 30-50€/Tag
 
@@ -77,7 +77,7 @@ Finale URL: https://rohrreinigung-kraft.de/service/toilette-verstopft
 ### Einstellungen
 - **Name:** Rohrreinigung Services
 - **Typ:** Suchnetzwerk
-- **Zielregion:** Nürnberg + 100km Umkreis
+- **Zielregion:** Nürnberg + 65km Umkreis
 - **Budget:** 15€/Tag
 - **Gebotsstrategie:** Conversions maximieren
 
@@ -186,7 +186,7 @@ Finale URL: https://rohrreinigung-kraft.de/fuerth
 - Anzeige: "Jetzt anrufen"
 
 ### Standort-Erweiterung
-- Nürnberg & 100km Umkreis
+- Nürnberg & 65km Umkreis
 
 ### Snippet-Erweiterungen
 - **Services:** Rohrreinigung, Kanalreinigung, Notdienst, Kamera-Inspektion

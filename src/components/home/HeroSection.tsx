@@ -87,7 +87,7 @@ export default function HeroSection() {
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl lg:max-w-xl animate-fade-in-up delay-200">
               Professionelle Rohrreinigung & Kanalreinigung in{" "}
               <strong className="text-primary">Nürnberg</strong> und{" "}
-              <strong className="text-primary">100km Umkreis</strong>.
+              <strong className="text-primary">65km Umkreis</strong>.
               Schnelle Anfahrt, faire Preise, moderne Technik.
             </p>
 

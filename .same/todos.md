@@ -15,9 +15,11 @@
 - [x] Assets page with logo and brand colors
 - [x] Email updated to use RECIPIENT_EMAIL env variable
 - [x] Added RESEND_FROM_EMAIL env variable for custom sender address
-- [x] **NEW: Improved email template design (professional & beautiful)**
-- [x] **NEW: Better image upload logging and error handling**
-- [x] **NEW: Warning shown when images can't be uploaded**
+- [x] Improved email template design (professional & beautiful)
+- [x] Better image upload logging and error handling
+- [x] Warning shown when images can't be uploaded
+- [x] **Updated service radius from 100km to 65km across all files**
+- [x] **Google Ads campaign verified and updated with correct radius (65km)**
 
 ### Environment Variables (Vercel/Netlify)
 
@@ -28,6 +30,16 @@
 | `RESEND_FROM_EMAIL` | No | Sender email address (default: Rohrreinigung Kraft <noreply@rohrreinigungkraft.de>) |
 | `IMGBB_API_KEY` | **Yes for images** | For image uploads in contact form - GET FREE KEY: https://api.imgbb.com/ |
 | `GOOGLE_SHEETS_WEBHOOK_URL` | No | Google Sheets Apps Script webhook |
+
+### ⚠️ IMPORTANT: Service Radius
+
+**The service radius is now 65km from Nürnberg** (updated from 100km)
+
+This affects:
+- Google Ads campaigns (targeting)
+- Website content (HeroSection, CTASection, Footer, ContactForm)
+- Cities filter (max 65km option)
+- All marketing materials
 
 ### ⚠️ IMPORTANT: Image Upload Setup
 
@@ -63,7 +75,18 @@ To send emails to any address (like `info@rohrreinigungkraft.de`), you MUST:
 - Warning message when images couldn't be uploaded
 - Professional footer
 
-### Files Created
+### Files Updated (65km radius change)
+- `/docs/google-ads/kampagnen-plan.md` - Campaign strategy updated
+- `/src/data/company.ts` - serviceRadius changed to 65
+- `/src/data/cities.ts` - Comment updated
+- `/src/components/home/HeroSection.tsx` - 65km Umkreis
+- `/src/components/home/CTASection.tsx` - Nürnberg + 65km
+- `/src/components/home/ContactForm.tsx` - 65km Umkreis
+- `/src/components/layout/Footer.tsx` - 65km Einsatzradius
+- `/src/app/kontakt/page.tsx` - 65km radius
+- `/src/app/staedte/page.tsx` - Filter options and text updated
+
+### Files Created Previously
 - `/api/contact/route.ts` - Contact form API (improved)
 - `/assets/page.tsx` - Brand assets page
 - `/public/logo.svg` - Company logo

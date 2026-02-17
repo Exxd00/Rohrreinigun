@@ -143,7 +143,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="font-semibold">Nürnberg & Umgebung</p>
-                  <p className="text-sm text-gray-400">100km Einsatzradius</p>
+                  <p className="text-sm text-gray-400">65km Einsatzradius</p>
                 </div>
               </div>
             </div>

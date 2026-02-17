@@ -370,7 +370,7 @@ export default function ContactForm() {
                     <div>
                       <p className="font-medium text-gray-900 dark:text-white text-sm">Einsatzgebiet</p>
                       <p className="text-xs text-gray-600 dark:text-gray-400">
-                        Nürnberg & 100km Umkreis
+                        Nürnberg & 65km Umkreis
                       </p>
                     </div>
                   </div>

@@ -27,8 +27,7 @@ export default function StaedtePage() {
     { label: "Alle", value: null },
     { label: "< 30 km", value: 30 },
     { label: "< 50 km", value: 50 },
-    { label: "< 75 km", value: 75 },
-    { label: "< 100 km", value: 100 },
+    { label: "< 65 km", value: 65 },
   ];
 
   return (
@@ -41,7 +40,7 @@ export default function StaedtePage() {
               Unsere <span className="text-gradient">Einsatzgebiete</span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              Rohrreinigung in {cities.length}+ Städten im Umkreis von 100km um Nürnberg.
+              Rohrreinigung in {cities.length}+ Städten im Umkreis von 65km um Nürnberg.
               Finden Sie Ihren Standort!
             </p>
           </div>
@@ -166,7 +165,7 @@ export default function StaedtePage() {
               Ihre Stadt nicht gefunden?
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Wir sind im gesamten 100km Umkreis um Nürnberg tätig.
+              Wir sind im gesamten 65km Umkreis um Nürnberg tätig.
               Rufen Sie uns an - wir kommen auch zu Ihnen!
             </p>
             <Link href={`tel:${company.contact.phone}`}>

@@ -3,7 +3,7 @@ export const company = {
   name: "Rohrreinigung Kraft",
   tagline: "Ihr Experte für Rohrreinigung & Kanalreinigung in Nürnberg",
   mainCity: "Nürnberg",
-  serviceRadius: 100, // كم
+  serviceRadius: 65, // كم
 
   contact: {
     phone: "+49 176 55668109",
@@ -47,7 +47,7 @@ export const company = {
     },
     {
       title: "Schnelle Anfahrt",
-      description: "Im 100km Umkreis um Nürnberg",
+      description: "Im 65km Umkreis um Nürnberg",
       icon: "truck"
     },
     {

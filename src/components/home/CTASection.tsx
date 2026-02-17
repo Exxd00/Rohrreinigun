@@ -61,7 +61,7 @@ export default function CTASection() {
                 <MapPin className="w-6 h-6" />
               </div>
               <p className="text-sm opacity-80 mb-1">Einsatzgebiet</p>
-              <p className="font-bold">Nürnberg + 100km</p>
+              <p className="font-bold">Nürnberg + 65km</p>
             </div>
           </div>
 

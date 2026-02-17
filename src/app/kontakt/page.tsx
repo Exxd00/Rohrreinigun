@@ -38,7 +38,7 @@ export default function KontaktPage() {
             <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl h-80 flex items-center justify-center">
               <div className="text-center">
                 <p className="text-gray-500 dark:text-gray-400 mb-2">
-                  100km Umkreis um Nürnberg
+                  65km Umkreis um Nürnberg
                 </p>
                 <p className="text-sm text-gray-400">
                   Bayern - Mittelfranken - Oberfranken - Oberpfalz
