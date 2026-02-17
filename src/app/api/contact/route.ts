@@ -118,252 +118,133 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
   console.log("Images:", imageResult.uploadedUrls.length, "uploaded,", imageResult.failedCount, "failed");
   console.log("====================");
 
-  // Build image section
-  let imageSection = "";
-  if (imageResult.uploadedUrls.length > 0) {
-    imageSection = `
-      <tr>
-        <td style="padding: 25px 30px; background-color: #f8fafc;">
-          <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
-              <td style="padding-bottom: 15px;">
-                <span style="display: inline-block; background: linear-gradient(135deg, #3AB0FF 0%, #2563EB 100%); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
-                  📷 Bilder (${imageResult.uploadedUrls.length})
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <table cellpadding="0" cellspacing="0">
-                  <tr>
-                    ${imageResult.uploadedUrls.map((url, i) => `
-                      <td style="padding-right: 12px; padding-bottom: 12px;">
-                        <a href="${url}" target="_blank" style="text-decoration: none;">
-                          <img src="${url}" alt="Bild ${i + 1}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 12px; border: 3px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
-                        </a>
-                      </td>
-                    `).join("")}
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    `;
-  } else if (imageResult.totalProvided > 0) {
-    // Images were provided but couldn't be uploaded
-    imageSection = `
-      <tr>
-        <td style="padding: 20px 30px; background-color: #fef3c7;">
-          <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
-              <td style="color: #92400e; font-size: 14px;">
-                ⚠️ <strong>${imageResult.totalProvided} Bild(er) wurden hochgeladen, konnten aber nicht verarbeitet werden.</strong>
-                <br><span style="font-size: 12px; color: #a16207;">Bitte IMGBB_API_KEY in den Umgebungsvariablen konfigurieren.</span>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    `;
-  }
-
   const emailHtml = `
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Neue Kontaktanfrage</title>
+  <title>${formData.name} - ${formData.service}</title>
   <style>
-    /* Reset */
-    body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-
-    /* Mobile Styles */
-    @media only screen and (max-width: 600px) {
-      .mobile-padding { padding-left: 15px !important; padding-right: 15px !important; }
-      .mobile-stack { display: block !important; width: 100% !important; }
-      .mobile-center { text-align: center !important; }
-      .mobile-full-width { width: 100% !important; max-width: 100% !important; }
-      .mobile-btn { display: block !important; width: 100% !important; margin-bottom: 10px !important; padding: 16px 20px !important; }
-      .mobile-font-large { font-size: 24px !important; }
-      .mobile-hide { display: none !important; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @media (max-width: 480px) {
+      .container { padding: 16px !important; }
+      .phone-btn { font-size: 22px !important; }
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
 
-  <!-- Wrapper -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f1f5f9;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8fafc; padding: 20px 12px;">
     <tr>
-      <td align="center" style="padding: 20px 10px;">
+      <td align="center">
+        <table class="container" cellpadding="0" cellspacing="0" style="max-width: 420px; width: 100%; background-color: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06);">
 
-        <!-- Main Container -->
-        <table role="presentation" cellpadding="0" cellspacing="0" style="max-width: 500px; width: 100%; background-color: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-
-          <!-- Header -->
+          <!-- Thin Top Bar -->
           <tr>
-            <td style="background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%); padding: 30px 20px; text-align: center;">
-              <div style="font-size: 40px; margin-bottom: 12px;">🔧</div>
-              <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 700;">Neue Kundenanfrage</h1>
-              <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">Rohrreinigung Kraft</p>
-            </td>
+            <td style="height: 5px; background: linear-gradient(90deg, #10b981, #3b82f6);"></td>
           </tr>
 
-          <!-- Timestamp -->
+          <!-- Content -->
           <tr>
-            <td class="mobile-padding" style="padding: 20px 20px 0 20px;">
-              <div style="background-color: #ecfdf5; border-radius: 10px; padding: 12px 15px; border-left: 4px solid #10b981;">
-                <span style="color: #065f46; font-size: 13px;">📅 <strong>${formatDate()}</strong></span>
+            <td style="padding: 24px 20px;">
+
+              <!-- Time -->
+              <div style="text-align: center; margin-bottom: 16px;">
+                <span style="display: inline-block; background-color: #f1f5f9; color: #64748b; font-size: 11px; padding: 5px 12px; border-radius: 16px;">
+                  ${formatDate()}
+                </span>
               </div>
-            </td>
-          </tr>
 
-          <!-- Service Type - BIG & PROMINENT -->
-          <tr>
-            <td class="mobile-padding" style="padding: 20px;">
-              <div style="background: linear-gradient(135deg, #3AB0FF 0%, #2563EB 100%); border-radius: 16px; padding: 20px; text-align: center;">
-                <span style="color: rgba(255,255,255,0.8); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">Gewünschte Leistung</span>
-                <h2 style="margin: 10px 0 0 0; color: #ffffff; font-size: 24px; font-weight: 800;">${formData.service}</h2>
+              <!-- Service -->
+              <div style="text-align: center; margin-bottom: 20px;">
+                <div style="display: inline-block; background: linear-gradient(135deg, #0ea5e9, #3b82f6); padding: 14px 24px; border-radius: 14px;">
+                  <span style="color: rgba(255,255,255,0.8); font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; display: block;">Service</span>
+                  <span style="color: #ffffff; font-size: 18px; font-weight: 700; display: block; margin-top: 4px;">${formData.service}</span>
+                </div>
               </div>
-            </td>
-          </tr>
 
-          <!-- PHONE - MOST IMPORTANT - BIG BUTTON -->
-          <tr>
-            <td class="mobile-padding" style="padding: 0 20px 20px 20px;">
-              <a href="tel:${formData.phone}" style="display: block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 16px; padding: 20px; text-decoration: none; text-align: center;">
-                <span style="color: rgba(255,255,255,0.9); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">📞 Jetzt anrufen</span>
-                <div class="mobile-font-large" style="color: #ffffff; font-size: 28px; font-weight: 800; margin-top: 8px; letter-spacing: 0.5px;">${formData.phone}</div>
+              <!-- Customer Name -->
+              <div style="text-align: center; margin-bottom: 20px;">
+                <span style="color: #94a3b8; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Kunde</span>
+                <h1 style="color: #1e293b; font-size: 24px; font-weight: 700; margin-top: 4px;">${formData.name}</h1>
+              </div>
+
+              <!-- Phone Button -->
+              <a href="tel:${formData.phone}" style="display: block; background: linear-gradient(135deg, #10b981, #059669); padding: 16px 20px; border-radius: 14px; text-decoration: none; text-align: center; margin-bottom: 16px;">
+                <span style="color: rgba(255,255,255,0.85); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block;">📞 Telefon</span>
+                <span class="phone-btn" style="color: #ffffff; font-size: 24px; font-weight: 800; display: block; margin-top: 4px; letter-spacing: 0.5px;">${formData.phone}</span>
               </a>
-            </td>
-          </tr>
 
-          <!-- Customer Details -->
-          <tr>
-            <td class="mobile-padding" style="padding: 0 20px;">
-              <div style="background-color: #f8fafc; border-radius: 16px; overflow: hidden;">
-
-                <!-- Name -->
-                <div style="padding: 16px 18px; border-bottom: 1px solid #e2e8f0;">
-                  <div style="display: flex; align-items: center;">
-                    <span style="font-size: 20px; margin-right: 12px;">👤</span>
-                    <div>
-                      <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Name</span>
-                      <p style="margin: 4px 0 0 0; color: #1e293b; font-size: 17px; font-weight: 600;">${formData.name}</p>
-                    </div>
-                  </div>
-                </div>
-
+              <!-- Info Box -->
+              <div style="background-color: #f8fafc; border-radius: 14px; padding: 14px; margin-bottom: 16px;">
                 <!-- Location -->
-                <div style="padding: 16px 18px; border-bottom: 1px solid #e2e8f0;">
-                  <div style="display: flex; align-items: center;">
-                    <span style="font-size: 20px; margin-right: 12px;">📍</span>
-                    <div>
-                      <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Einsatzort</span>
-                      <p style="margin: 4px 0 0 0; color: #1e293b; font-size: 17px; font-weight: 600;">${formData.city}</p>
-                    </div>
-                  </div>
+                <div style="padding: 10px 0; border-bottom: 1px solid #e2e8f0;">
+                  <table width="100%"><tr>
+                    <td width="28" style="font-size: 16px; vertical-align: middle;">📍</td>
+                    <td style="vertical-align: middle;">
+                      <span style="color: #94a3b8; font-size: 10px; text-transform: uppercase; display: block;">Ort</span>
+                      <span style="color: #1e293b; font-size: 15px; font-weight: 600;">${formData.city}</span>
+                    </td>
+                  </tr></table>
                 </div>
-
                 <!-- Email -->
-                <div style="padding: 16px 18px;">
-                  <div style="display: flex; align-items: center;">
-                    <span style="font-size: 20px; margin-right: 12px;">✉️</span>
-                    <div>
-                      <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">E-Mail</span>
-                      <p style="margin: 4px 0 0 0; color: #1e293b; font-size: 15px;">
-                        ${formData.email ? `<a href="mailto:${formData.email}" style="color: #2563eb; text-decoration: none; word-break: break-all;">${formData.email}</a>` : '<span style="color: #94a3b8;">Nicht angegeben</span>'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </td>
-          </tr>
-
-          <!-- Message -->
-          ${formData.message ? `
-          <tr>
-            <td class="mobile-padding" style="padding: 20px;">
-              <div style="background-color: #f8fafc; border-radius: 16px; padding: 18px; border-left: 4px solid #3AB0FF;">
-                <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">💬 Nachricht</span>
-                <p style="margin: 10px 0 0 0; color: #334155; font-size: 15px; line-height: 1.6; white-space: pre-wrap;">${formData.message}</p>
-              </div>
-            </td>
-          </tr>
-          ` : ''}
-
-          <!-- Images -->
-          ${imageResult.uploadedUrls.length > 0 ? `
-          <tr>
-            <td class="mobile-padding" style="padding: 0 20px 20px 20px;">
-              <div style="background-color: #f8fafc; border-radius: 16px; padding: 18px;">
-                <span style="color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">📷 Bilder (${imageResult.uploadedUrls.length})</span>
-                <div style="margin-top: 12px;">
-                  ${imageResult.uploadedUrls.map((url, i) => `
-                    <a href="${url}" target="_blank" style="display: inline-block; margin: 4px;">
-                      <img src="${url}" alt="Bild ${i + 1}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 12px; border: 2px solid #e2e8f0;" />
-                    </a>
-                  `).join('')}
+                <div style="padding: 10px 0;">
+                  <table width="100%"><tr>
+                    <td width="28" style="font-size: 16px; vertical-align: middle;">✉️</td>
+                    <td style="vertical-align: middle;">
+                      <span style="color: #94a3b8; font-size: 10px; text-transform: uppercase; display: block;">E-Mail</span>
+                      <span style="color: #1e293b; font-size: 14px;">${formData.email ? `<a href="mailto:${formData.email}" style="color: #3b82f6; text-decoration: none;">${formData.email}</a>` : '<span style="color: #cbd5e1;">—</span>'}</span>
+                    </td>
+                  </tr></table>
                 </div>
               </div>
-            </td>
-          </tr>
-          ` : imageResult.totalProvided > 0 ? `
-          <tr>
-            <td class="mobile-padding" style="padding: 0 20px 20px 20px;">
-              <div style="background-color: #fef3c7; border-radius: 12px; padding: 15px;">
-                <span style="color: #92400e; font-size: 13px;">⚠️ ${imageResult.totalProvided} Bild(er) konnten nicht verarbeitet werden.</span>
-              </div>
-            </td>
-          </tr>
-          ` : ''}
 
-          <!-- Action Buttons -->
-          <tr>
-            <td class="mobile-padding" style="padding: 10px 20px 25px 20px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <!-- Message -->
+              ${formData.message ? `
+              <div style="background-color: #f0f9ff; border-radius: 14px; padding: 14px; margin-bottom: 16px; border-left: 3px solid #3b82f6;">
+                <span style="color: #64748b; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">💬 Nachricht</span>
+                <p style="color: #334155; font-size: 14px; line-height: 1.5; margin: 0; white-space: pre-wrap;">${formData.message}</p>
+              </div>
+              ` : ''}
+
+              <!-- Images -->
+              ${imageResult.uploadedUrls.length > 0 ? `
+              <div style="background-color: #f8fafc; border-radius: 14px; padding: 14px; margin-bottom: 16px;">
+                <span style="color: #64748b; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px;">📷 ${imageResult.uploadedUrls.length} Bild${imageResult.uploadedUrls.length > 1 ? 'er' : ''}</span>
+                <div>
+                  ${imageResult.uploadedUrls.map((url, i) => `<a href="${url}" target="_blank" style="display: inline-block; margin: 3px;"><img src="${url}" alt="Bild ${i + 1}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px; border: 2px solid #e2e8f0;" /></a>`).join('')}
+                </div>
+              </div>
+              ` : ''}
+
+              <!-- Action Buttons -->
+              <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="padding: 5px;">
-                    <a href="tel:${formData.phone}" class="mobile-btn" style="display: block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center;">
-                      📞 Anrufen
-                    </a>
+                  <td width="50%" style="padding-right: 5px;">
+                    <a href="tel:${formData.phone}" style="display: block; background-color: #10b981; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px;">📞 Anrufen</a>
                   </td>
-                  <td style="padding: 5px;">
-                    <a href="https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}" class="mobile-btn" style="display: block; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center;">
-                      💬 WhatsApp
-                    </a>
+                  <td width="50%" style="padding-left: 5px;">
+                    <a href="https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}" style="display: block; background-color: #25D366; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px;">💬 WhatsApp</a>
                   </td>
                 </tr>
               </table>
+
             </td>
           </tr>
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #1e293b; padding: 20px; text-align: center;">
-              <p style="margin: 0; color: rgba(255,255,255,0.5); font-size: 12px;">
-                Automatisch gesendet von<br>
-                <strong style="color: #3AB0FF;">rohrreinigung-kraft.de</strong>
-              </p>
+            <td style="background-color: #f1f5f9; padding: 12px; text-align: center;">
+              <span style="color: #94a3b8; font-size: 10px;">rohrreinigung-kraft.de</span>
             </td>
           </tr>
 
         </table>
-
-        <!-- Footer Text -->
-        <p style="margin: 15px 0 0 0; color: #94a3b8; font-size: 11px; text-align: center;">
-          © ${new Date().getFullYear()} Rohrreinigung Kraft
-        </p>
-
       </td>
     </tr>
   </table>
+
 </body>
 </html>
   `;
@@ -378,7 +259,7 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
       body: JSON.stringify({
         from: RESEND_FROM_EMAIL,
         to: [RECIPIENT_EMAIL],
-        subject: `🔧 Neue Anfrage: ${formData.service} - ${formData.name} (${formData.city})`,
+        subject: `${formData.name} · ${formData.service} · ${formData.city}`,
         html: emailHtml,
         reply_to: formData.email || undefined,
       }),
