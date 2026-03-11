@@ -1,11 +1,11 @@
 "use client";
 
-import { CheckCircle, Users, Clock, Award, Shield } from "lucide-react";
+import { Users, Clock, Award, Shield } from "lucide-react";
 import { company, teamMembers, teamImages } from "@/data/company";
 
 export default function AboutUs() {
   return (
-    <section className="py-16 md:py-24 pb-24 md:pb-32 bg-white dark:bg-gray-900">
+    <section className="py-16 md:py-24 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -22,9 +22,9 @@ export default function AboutUs() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
           {/* Left - Image Grid */}
-          <div className="relative pb-4">
+          <div className="relative">
             <div className="grid grid-cols-2 gap-3 md:gap-4">
               {/* Main large image */}
               <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-xl">
@@ -56,18 +56,7 @@ export default function AboutUs() {
               ))}
             </div>
 
-            {/* Floating stats card */}
-            <div className="absolute -bottom-8 right-2 md:right-4 bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-4 border border-gray-100 dark:border-gray-700 z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900 dark:text-white">{company.stats.projectsCompleted}</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Erfolgreiche Einsätze</p>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* Right - Content */}
