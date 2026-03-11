@@ -10,10 +10,10 @@ export const company = {
   serviceRadius: 65, // كم
 
   contact: {
-    phone: "+49 176 55668109",
-    phoneDisplay: "0176 55668109",
+    phone: "+49 911 89218682",
+    phoneDisplay: "0911 89218682",
     email: "Info@rohrreinigungkraft.de",
-    whatsapp: "+49 176 55668109",
+    whatsapp: "+49 911 89218682",
   },
 
   address: {

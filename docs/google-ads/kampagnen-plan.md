@@ -38,14 +38,14 @@
 Beschreibung 1: Professionelle Rohrreinigung rund um die Uhr. Schnelle Anfahrt, faire Preise. Jetzt anrufen!
 Beschreibung 2: Lokaler Fachbetrieb ✓ Moderne Technik ✓ Keine versteckten Kosten ✓
 Finale URL: https://rohrreinigung-kraft.de
-Anruf-Erweiterung: 0176 55668109
+Anruf-Erweiterung: 0911 89218682
 ```
 
 **Anzeige 2:**
 ```
 Überschrift 1: Abfluss verstopft? Wir helfen!
 Überschrift 2: Notdienst 24/7 - Nürnberg
-Überschrift 3: ☎ 0176 55668109
+Überschrift 3: ☎ 0911 89218682
 Beschreibung 1: Rohrreinigung Notdienst - Schnelle Hilfe bei Verstopfungen. Professionell & zuverlässig.
 Beschreibung 2: 10+ Jahre Erfahrung ✓ 2000+ Einsätze ✓ 98% Kundenzufriedenheit ✓
 Finale URL: https://rohrreinigung-kraft.de/service/rohrreinigung-notdienst
@@ -182,7 +182,7 @@ Finale URL: https://rohrreinigung-kraft.de/fuerth
 4. **Einsatzgebiete** → /staedte
 
 ### Anruf-Erweiterung
-- Telefon: 0176 55668109
+- Telefon: 0911 89218682
 - Anzeige: "Jetzt anrufen"
 
 ### Standort-Erweiterung

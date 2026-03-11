@@ -106,11 +106,11 @@ export default function ContactForm() {
       } else {
         console.error("Form submission failed:", result);
         const errorMsg = result.details || result.error || "Unbekannter Fehler";
-        alert(`Fehler: ${errorMsg}\n\nBitte rufen Sie uns direkt an: 0176 55668109`);
+        alert(`Fehler: ${errorMsg}\n\nBitte rufen Sie uns direkt an: 0911 89218682`);
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung oder rufen Sie uns an: 0176 55668109");
+      alert("Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung oder rufen Sie uns an: 0911 89218682");
     } finally {
       setIsSubmitting(false);
     }
