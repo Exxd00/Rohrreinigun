@@ -9,6 +9,12 @@
   - Added all before/after pairs for: Abflussreinigung, Kanalreinigung, Rohrreinigung, Inspektion, Notdienst
   - Added team members with correct image paths
   - Added team group and service images
+- [x] Fixed floating stats card positioning in AboutUs section
+  - Added proper padding to section (pb-24 md:pb-32)
+  - Fixed card positioning (right-2 md:right-4 instead of -right-2 md:-right-6)
+  - Added z-index for proper layering
+  - Increased grid margin (mb-20 instead of mb-16)
+- [x] Pushed changes to GitHub repository
 
 ## Available Images in Repository
 Located in `/public/images/`:

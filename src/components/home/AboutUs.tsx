@@ -31,7 +31,7 @@ export default function AboutUs() {
                 <img
                   src={teamImages.group}
                   alt="Unser Team"
-                  className="w-full h-48 md:h-64 object-cover"
+                  className="w-full h-56 md:h-72 object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
@@ -46,7 +46,7 @@ export default function AboutUs() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-32 md:h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-40 md:h-48 object-cover object-top group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute bottom-2 left-2 text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -130,7 +130,7 @@ export default function AboutUs() {
           <img
             src={teamImages.service}
             alt="Professionelle Rohrreinigung im Einsatz"
-            className="w-full h-48 md:h-64 object-cover"
+            className="w-full h-56 md:h-72 object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center">
             <div className="p-6 md:p-10 max-w-lg">
