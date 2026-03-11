@@ -31,7 +31,7 @@ export default function AboutUs() {
                 <img
                   src={teamImages.group}
                   alt="Unser Team"
-                  className="w-full h-56 md:h-72 object-cover object-top"
+                  className="w-full h-64 md:h-80 object-cover object-[center_25%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
