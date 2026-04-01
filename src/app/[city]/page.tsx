@@ -103,7 +103,7 @@ export default async function CityPage({ params }: CityPageProps) {
               </Link>
               <Link href="/kontakt">
                 <Button size="lg" variant="outline" className="h-14 px-8">
-                  Kontaktformular
+                  Schnelle Hilfe anfordern
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>

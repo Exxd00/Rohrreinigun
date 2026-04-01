@@ -108,7 +108,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="h-14 px-8 text-lg font-semibold border-2 border-gray-300 dark:border-gray-600 hover:border-primary hover:text-primary w-full sm:w-auto"
                 >
-                  Kontaktformular
+                  Schnelle Hilfe anfordern
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>

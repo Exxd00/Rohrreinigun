@@ -81,7 +81,7 @@ export default function CTASection() {
                 size="lg"
                 className="bg-transparent border-2 border-white text-white hover:bg-white/10 h-14 px-8 text-lg font-semibold w-full sm:w-auto"
               >
-                Kontaktformular
+                Schnelle Hilfe anfordern
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
