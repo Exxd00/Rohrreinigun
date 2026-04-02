@@ -47,7 +47,7 @@ export default async function CityPage({ params }: CityPageProps) {
 
   const mainServices = getMainServices();
   const nearbyCities = cities
-    .filter((c) => c.slug !== city.slug && Math.abs(c.distance - city.distance) < 30)
+    .filter((c) => c.slug !== city.slug && c.region === city.region)
     .slice(0, 6);
 
   const jsonLd = {
@@ -90,8 +90,8 @@ export default async function CityPage({ params }: CityPageProps) {
             </h1>
 
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              {city.description} Wir sind in nur{" "}
-              <strong className="text-primary">{city.distance === 0 ? "kürzester Zeit" : `${city.distance} Minuten`}</strong> bei Ihnen vor Ort.
+              {city.description} Wir sind{" "}
+              <strong className="text-primary">schnell</strong> bei Ihnen vor Ort.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -171,12 +171,12 @@ export default async function CityPage({ params }: CityPageProps) {
               </p>
               <p>
                 Ob verstopfte Toilette, blockierter Abfluss oder komplette Kanalreinigung - unser Notdienst ist 24 Stunden am Tag,
-                7 Tage die Woche für Sie erreichbar. Die Anfahrt nach {city.name} dauert ca. {city.distance === 0 ? "wenige" : city.distance} Minuten.
+                7 Tage die Woche für Sie erreichbar. Wir kommen schnell zu Ihnen nach {city.name}.
               </p>
               <h3>Unsere Vorteile in {city.name}:</h3>
               <ul>
                 <li>24/7 Notdienst - auch an Wochenenden und Feiertagen</li>
-                <li>Schnelle Anfahrt in {city.distance === 0 ? "kürzester Zeit" : `ca. ${city.distance} Minuten`}</li>
+                <li>Schnelle Anfahrt zu Ihnen</li>
                 <li>Moderne Hochdrucktechnik und Kamerainspektion</li>
                 <li>Transparente Preise ohne versteckte Kosten</li>
                 <li>Erfahrene Fachkräfte mit professioneller Ausrüstung</li>

@@ -12,23 +12,14 @@ import { company } from "@/data/company";
 export default function StaedtePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
-  const [maxDistance, setMaxDistance] = useState<number | null>(null);
 
   const filteredCities = useMemo(() => {
     return cities.filter((city) => {
       const matchesSearch = city.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesRegion = !selectedRegion || city.region === selectedRegion;
-      const matchesDistance = !maxDistance || city.distance <= maxDistance;
-      return matchesSearch && matchesRegion && matchesDistance;
-    }).sort((a, b) => a.distance - b.distance);
-  }, [searchQuery, selectedRegion, maxDistance]);
-
-  const distanceOptions = [
-    { label: "Alle Städte", value: null },
-    { label: "Nahbereich", value: 30 },
-    { label: "Mittlere Entfernung", value: 50 },
-    { label: "Gesamtes Einsatzgebiet", value: 65 },
-  ];
+      return matchesSearch && matchesRegion;
+    }).sort((a, b) => a.name.localeCompare(b.name, 'de'));
+  }, [searchQuery, selectedRegion]);
 
   return (
     <>
@@ -86,22 +77,6 @@ export default function StaedtePage() {
                 </Button>
               ))}
             </div>
-
-            {/* Distance Filter */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0">
-              <MapPin className="w-5 h-5 text-gray-400 shrink-0" />
-              {distanceOptions.map((option) => (
-                <Button
-                  key={option.label}
-                  variant={maxDistance === option.value ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setMaxDistance(option.value)}
-                  className="shrink-0"
-                >
-                  {option.label}
-                </Button>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -125,7 +100,7 @@ export default function StaedtePage() {
                 >
                   <div className="flex flex-col gap-1 sm:gap-2 mb-2 sm:mb-3">
                     <Badge variant="outline" className="self-start text-xs">
-                      {city.distance === 0 ? "Hauptsitz" : `${city.distance} km`}
+                      {city.distance === 0 ? "Hauptsitz" : city.region}
                     </Badge>
                     <h2 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors line-clamp-1">
                       {city.name}
@@ -148,7 +123,7 @@ export default function StaedtePage() {
                 <p className="text-gray-500 dark:text-gray-400 mb-4">
                   Keine Städte gefunden. Versuchen Sie eine andere Suche.
                 </p>
-                <Button onClick={() => { setSearchQuery(""); setSelectedRegion(null); setMaxDistance(null); }}>
+                <Button onClick={() => { setSearchQuery(""); setSelectedRegion(null); }}>
                   Filter zurücksetzen
                 </Button>
               </div>

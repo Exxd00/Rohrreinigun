@@ -64,7 +64,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
     .slice(0, 3);
 
   const nearbyCities = cities
-    .filter((c) => c.slug !== city.slug && Math.abs(c.distance - city.distance) < 30)
+    .filter((c) => c.slug !== city.slug && c.region === city.region)
     .slice(0, 5);
 
   const jsonLd = {
@@ -115,7 +115,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
             </h1>
 
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              {service.shortDescription} Wir sind in {city.distance === 0 ? "kürzester Zeit" : `ca. ${city.distance} Minuten`} bei Ihnen in {city.name} vor Ort.
+              {service.shortDescription} Wir sind schnell bei Ihnen in {city.name} vor Ort.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -184,7 +184,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <span className="text-gray-600 dark:text-gray-300">
-                    Schnelle Anfahrt nach {city.name} in ca. {city.distance === 0 ? "wenigen" : city.distance} Minuten
+                    Schnelle Anfahrt nach {city.name}
                   </span>
                 </li>
               </ul>
