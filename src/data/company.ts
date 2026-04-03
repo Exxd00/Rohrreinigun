@@ -13,7 +13,6 @@ export const company = {
     phone: "+49 911 89218682",
     phoneDisplay: "0911 89218682",
     email: "info@rohrreinigungkraft.de",
-    whatsapp: "+49 911 89218682",
   },
 
   address: {

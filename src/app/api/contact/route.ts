@@ -219,14 +219,11 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
               </div>
               ` : ''}
 
-              <!-- Action Buttons -->
+              <!-- Action Button -->
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td width="50%" style="padding-right: 5px;">
-                    <a href="tel:${formData.phone}" style="display: block; background-color: #10b981; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px;">📞 Anrufen</a>
-                  </td>
-                  <td width="50%" style="padding-left: 5px;">
-                    <a href="https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}" style="display: block; background-color: #25D366; color: white; padding: 12px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px;">💬 WhatsApp</a>
+                  <td style="text-align: center;">
+                    <a href="tel:${formData.phone}" style="display: inline-block; background-color: #10b981; color: white; padding: 12px 32px; border-radius: 10px; text-decoration: none; text-align: center; font-weight: 600; font-size: 13px;">📞 Anrufen</a>
                   </td>
                 </tr>
               </table>

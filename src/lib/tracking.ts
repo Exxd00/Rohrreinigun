@@ -1,6 +1,6 @@
 // Conversion Tracking Events Utility
 // Google Analytics 4 + Google Ads Ready
-// Events: generate_lead, form_submit, thank_you_page, whatsapp_click, phone_click, cta_click
+// Events: generate_lead, form_submit, thank_you_page, phone_click, cta_click
 
 declare global {
   interface Window {
@@ -71,21 +71,6 @@ export const trackThankYouPage = () => {
     event_label: 'lead_form_submission',
     value: 50,
     currency: 'EUR',
-  });
-};
-
-// WhatsApp click - engagement
-export const trackWhatsAppClick = (source?: string) => {
-  trackEvent('whatsapp_click', {
-    event_category: 'engagement',
-    event_label: source || 'floating_button',
-    contact_method: 'whatsapp',
-  });
-
-  // Track as lead for WhatsApp contact
-  trackLead({
-    lead_source: 'whatsapp',
-    source_location: source,
   });
 };
 

@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle, Phone, MessageCircle, Home, ArrowLeft } from "lucide-react";
+import { CheckCircle, Phone, Home, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { company } from "@/data/company";
-import { trackThankYouPage, trackPhoneClick, trackWhatsAppClick } from "@/lib/tracking";
+import { trackThankYouPage, trackPhoneClick } from "@/lib/tracking";
 
 export default function ThankYouPage() {
   const router = useRouter();
@@ -30,10 +30,6 @@ export default function ThankYouPage() {
 
   const handlePhoneClick = () => {
     trackPhoneClick("thank_you_page");
-  };
-
-  const handleWhatsAppClick = () => {
-    trackWhatsAppClick("thank_you_page");
   };
 
   // Don't render anything while checking or if invalid
@@ -71,7 +67,7 @@ export default function ThankYouPage() {
             Für dringende Notfälle:
           </h2>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex justify-center">
             {/* Phone Button */}
             <a
               href={`tel:${company.contact.phone}`}
@@ -86,25 +82,6 @@ export default function ThankYouPage() {
               </span>
               <span className="text-xs text-gray-500 dark:text-gray-400">
                 {company.contact.phoneDisplay}
-              </span>
-            </a>
-
-            {/* WhatsApp Button */}
-            <a
-              href={`https://wa.me/${company.contact.whatsapp.replace(/[^0-9]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleWhatsAppClick}
-              className="flex flex-col items-center gap-2 p-4 bg-green-50 dark:bg-green-900/30 rounded-xl hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
-            >
-              <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center">
-                <MessageCircle className="w-6 h-6 text-white" />
-              </div>
-              <span className="font-semibold text-green-700 dark:text-green-400 text-sm">
-                WhatsApp
-              </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">
-                Jetzt schreiben
               </span>
             </a>
           </div>
