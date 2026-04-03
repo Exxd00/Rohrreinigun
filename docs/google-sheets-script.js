@@ -1,7 +1,7 @@
 // =====================================================
 // ROHRREINIGUNG KRAFT - GOOGLE SHEETS FORM HANDLER
 // Farben: #3AB0FF (Primär/Blau) | #1E3A8A (Dunkel) | #F8FBFF (Hell)
-// Website: rohrreinigung-kraft.de | Nürnberg & Umgebung
+// Website: rohrreinigungkraft.de | Nürnberg & Umgebung
 // =====================================================
 
 function doPost(e) {

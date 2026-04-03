@@ -52,8 +52,8 @@ const jsonLd = {
     closes: "23:59",
   },
   priceRange: "$$",
-  image: "https://rohrreinigung-kraft.de/og-image.jpg",
-  url: "https://rohrreinigung-kraft.de",
+  image: "https://rohrreinigungkraft.de/og-image.jpg",
+  url: "https://rohrreinigungkraft.de",
   sameAs: [],
   hasOfferCatalog: {
     "@type": "OfferCatalog",

@@ -37,7 +37,7 @@
 Überschrift 3: In 30-60 Min vor Ort
 Beschreibung 1: Professionelle Rohrreinigung rund um die Uhr. Schnelle Anfahrt, faire Preise. Jetzt anrufen!
 Beschreibung 2: Lokaler Fachbetrieb ✓ Moderne Technik ✓ Keine versteckten Kosten ✓
-Finale URL: https://rohrreinigung-kraft.de
+Finale URL: https://rohrreinigungkraft.de
 Anruf-Erweiterung: 0911 89218682
 ```
 
@@ -48,7 +48,7 @@ Anruf-Erweiterung: 0911 89218682
 Überschrift 3: ☎ 0911 89218682
 Beschreibung 1: Rohrreinigung Notdienst - Schnelle Hilfe bei Verstopfungen. Professionell & zuverlässig.
 Beschreibung 2: 10+ Jahre Erfahrung ✓ 2000+ Einsätze ✓ 98% Kundenzufriedenheit ✓
-Finale URL: https://rohrreinigung-kraft.de/service/rohrreinigung-notdienst
+Finale URL: https://rohrreinigungkraft.de/service/rohrreinigung-notdienst
 ```
 
 ### Anzeigengruppe 2: Toilette verstopft
@@ -67,7 +67,7 @@ Finale URL: https://rohrreinigung-kraft.de/service/rohrreinigung-notdienst
 Überschrift 3: 24/7 Notdienst
 Beschreibung 1: WC verstopft? Wir sind schnell bei Ihnen. Professionelle Lösung ohne Schäden.
 Beschreibung 2: Faire Preise ✓ Keine Anfahrtskosten ✓ Saubere Arbeit ✓
-Finale URL: https://rohrreinigung-kraft.de/service/toilette-verstopft
+Finale URL: https://rohrreinigungkraft.de/service/toilette-verstopft
 ```
 
 ---
@@ -99,7 +99,7 @@ Finale URL: https://rohrreinigung-kraft.de/service/toilette-verstopft
 Überschrift 3: Kostenlose Beratung
 Beschreibung 1: Rohrreinigung vom Fachbetrieb. Modernste Technik für alle Verstopfungen.
 Beschreibung 2: Schnelle Termine ✓ Transparente Preise ✓ Lokaler Service ✓
-Finale URL: https://rohrreinigung-kraft.de/service/rohrreinigung
+Finale URL: https://rohrreinigungkraft.de/service/rohrreinigung
 ```
 
 ### Anzeigengruppe 2: Kanalreinigung
@@ -118,7 +118,7 @@ Finale URL: https://rohrreinigung-kraft.de/service/rohrreinigung
 Überschrift 3: Jetzt Termin vereinbaren
 Beschreibung 1: Professionelle Kanalreinigung mit modernster Hochdrucktechnik. Schnell & gründlich.
 Beschreibung 2: TV-Inspektion möglich ✓ Wartungsverträge ✓ Faire Preise ✓
-Finale URL: https://rohrreinigung-kraft.de/service/kanalreinigung
+Finale URL: https://rohrreinigungkraft.de/service/kanalreinigung
 ```
 
 ### Anzeigengruppe 3: Kamera-Inspektion
@@ -136,7 +136,7 @@ Finale URL: https://rohrreinigung-kraft.de/service/kanalreinigung
 Überschrift 3: In Nürnberg & Umgebung
 Beschreibung 1: TV-Inspektion für Rohre & Kanäle. Präzise Schadensanalyse mit modernster Technik.
 Beschreibung 2: Dokumentation inklusive ✓ Sofortige Auswertung ✓
-Finale URL: https://rohrreinigung-kraft.de/service/kamera-inspektion
+Finale URL: https://rohrreinigungkraft.de/service/kamera-inspektion
 ```
 
 ---
@@ -168,7 +168,7 @@ Für jede Stadt eine separate Anzeigengruppe mit lokalen Keywords:
 Überschrift 3: 24/7 erreichbar
 Beschreibung 1: Rohrreinigung in Fürth & Umgebung. Lokaler Fachbetrieb mit schneller Anfahrt.
 Beschreibung 2: Notdienst verfügbar ✓ Faire Preise ✓ Moderne Technik ✓
-Finale URL: https://rohrreinigung-kraft.de/fuerth
+Finale URL: https://rohrreinigungkraft.de/fuerth
 ```
 
 ---

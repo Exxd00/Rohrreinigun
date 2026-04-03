@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { cities, getAllCitySlugs } from "@/data/cities";
 import { services, getAllServiceSlugs } from "@/data/services";
 
-const baseUrl = "https://rohrreinigung-kraft.de";
+const baseUrl = "https://rohrreinigungkraft.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const citySlugs = getAllCitySlugs();

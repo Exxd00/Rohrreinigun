@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         "/assets",
       ],
     },
-    sitemap: "https://rohrreinigung-kraft.de/sitemap.xml",
+    sitemap: "https://rohrreinigungkraft.de/sitemap.xml",
   };
 }

@@ -234,7 +234,7 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
           <!-- Footer -->
           <tr>
             <td style="background-color: #f1f5f9; padding: 12px; text-align: center;">
-              <span style="color: #94a3b8; font-size: 10px;">rohrreinigung-kraft.de</span>
+              <span style="color: #94a3b8; font-size: 10px;">rohrreinigungkraft.de</span>
             </td>
           </tr>
 

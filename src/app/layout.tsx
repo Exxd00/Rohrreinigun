@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://rohrreinigung-kraft.de",
+    canonical: "https://rohrreinigungkraft.de",
   },
 };
 
