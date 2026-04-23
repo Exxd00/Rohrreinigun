@@ -1,0 +1,59 @@
+Account,Campaign,Ad group,Max CPC,Status
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Rohr verstopft JETZT,5.50,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Abfluss verstopft Hilfe,5.00,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Verstopfung Notfall,5.50,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Toilette verstopft JETZT,5.50,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,WC überläuft Hilfe,6.00,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Klo verstopft Notfall,5.00,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Keller unter Wasser,5.50,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Rückstau Notfall,5.00,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Abwasser tritt aus,5.50,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Rohrreinigung Kosten,3.50,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Was kostet Verstopfung,3.20,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Toilette entstopfen Preis,3.50,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Rohrreinigung Festpreis,3.80,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Keine versteckten Kosten,3.50,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Transparente Preise,3.20,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Verstopfung kommt wieder,4.00,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Immer wieder verstopft,4.00,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Warum verstopft,3.80,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Kamera Inspektion Rohr,3.50,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,TV Inspektion Kanal,3.20,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Rohrschaden finden,3.50,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Rohrreinigung Hausverwaltung,2.80,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,WEG Rohrreinigung,2.50,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Mehrfamilienhaus Service,2.50,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Restaurant Rohrreinigung,2.80,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Fettabscheider Wartung,2.50,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Hotel Abfluss Service,2.50,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Rohrreinigung Nürnberg,4.00,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Notdienst Nürnberg,4.50,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Verstopfung Nürnberg,4.00,Enabled
+789-424-2096,📍 LOKAL | Fürth,Rohrreinigung Fürth,3.80,Enabled
+789-424-2096,📍 LOKAL | Fürth,Notdienst Fürth,4.00,Enabled
+789-424-2096,📍 LOKAL | Erlangen,Rohrreinigung Erlangen,3.80,Enabled
+789-424-2096,📍 LOKAL | Erlangen,Notdienst Erlangen,4.00,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Rohrreinigung Abzocke,4.50,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Betrug vermeiden,4.20,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Seriöser Anbieter,4.00,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Rohrreinigung Erfahrung,3.80,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Gute Bewertungen,3.50,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Empfehlung gesucht,3.50,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Mieter Verstopfung,3.50,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Vermieter zahlt nicht,3.20,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Wer zahlt Rohrreinigung,3.50,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Eigenheim Verstopfung,3.50,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Haus Abfluss Problem,3.20,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Grundstück Kanal,3.50,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Dusche verstopft,3.80,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Badewanne läuft nicht ab,3.50,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Haare im Abfluss,3.20,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Spüle verstopft,3.80,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Küche Abfluss,3.50,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Fett im Rohr,3.20,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Kanalgeruch Wohnung,3.50,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Abfluss stinkt,3.20,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Gestank aus Rohr,3.20,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Rohrreinigung Wartung,2.80,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Vorsorge Reinigung,2.50,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Regelmäßige Reinigung,2.50,Enabled

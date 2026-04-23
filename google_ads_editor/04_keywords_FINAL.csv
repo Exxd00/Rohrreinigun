@@ -1,0 +1,26 @@
+Account,Campaign,Ad group,Keyword,Match type,Status
+789-424-2096,Notdienst Verstopfung,Rohr verstopft,[rohr verstopft],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Rohr verstopft,[rohr verstopft hilfe],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Rohr verstopft,[rohrverstopfung],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Rohr verstopft,rohr verstopft,Phrase,Enabled
+789-424-2096,Notdienst Verstopfung,Toilette verstopft,[toilette verstopft],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Toilette verstopft,[wc verstopft],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Toilette verstopft,[klo verstopft],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Toilette verstopft,toilette verstopft,Phrase,Enabled
+789-424-2096,Notdienst Verstopfung,Abfluss verstopft,[abfluss verstopft],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Abfluss verstopft,[abfluss zu],Exact,Enabled
+789-424-2096,Notdienst Verstopfung,Abfluss verstopft,abfluss verstopft,Phrase,Enabled
+789-424-2096,Preisanfragen,Rohrreinigung Kosten,[rohrreinigung kosten],Exact,Enabled
+789-424-2096,Preisanfragen,Rohrreinigung Kosten,[was kostet rohrreinigung],Exact,Enabled
+789-424-2096,Preisanfragen,Rohrreinigung Kosten,[rohrreinigung preis],Exact,Enabled
+789-424-2096,Preisanfragen,Rohrreinigung Kosten,rohrreinigung kosten,Phrase,Enabled
+789-424-2096,Preisanfragen,Rohrreinigung Festpreis,[rohrreinigung festpreis],Exact,Enabled
+789-424-2096,Preisanfragen,Rohrreinigung Festpreis,[rohrreinigung ohne versteckte kosten],Exact,Enabled
+789-424-2096,Lokal Nuernberg,Rohrreinigung Nuernberg,[rohrreinigung nürnberg],Exact,Enabled
+789-424-2096,Lokal Nuernberg,Rohrreinigung Nuernberg,[rohrreinigung nuernberg],Exact,Enabled
+789-424-2096,Lokal Nuernberg,Rohrreinigung Nuernberg,rohrreinigung nürnberg,Phrase,Enabled
+789-424-2096,Lokal Nuernberg,Notdienst Nuernberg,[rohrreinigung notdienst nürnberg],Exact,Enabled
+789-424-2096,Lokal Nuernberg,Notdienst Nuernberg,[notdienst rohrreinigung nürnberg],Exact,Enabled
+789-424-2096,B2B Hausverwaltung,Hausverwaltung,[rohrreinigung hausverwaltung],Exact,Enabled
+789-424-2096,B2B Hausverwaltung,Hausverwaltung,[rohrreinigung für hausverwaltung],Exact,Enabled
+789-424-2096,B2B Hausverwaltung,Hausverwaltung,rohrreinigung hausverwaltung,Phrase,Enabled
