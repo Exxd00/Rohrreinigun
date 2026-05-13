@@ -1,0 +1,407 @@
+[images]
+  remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*"]
+
+[build]
+  command = "bun run build"
+  publish = ".next"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# ===========================================
+# DOMAIN REDIRECTS - Consolidate all to primary
+# ===========================================
+
+# Redirect from rohrreinigungkraft.de (without hyphen) to rohrreinigung-kraft.de
+[[redirects]]
+  from = "https://rohrreinigungkraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://rohrreinigungkraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.rohrreinigungkraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.rohrreinigungkraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+# Redirect www version of primary domain
+[[redirects]]
+  from = "https://www.rohrreinigung-kraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.rohrreinigung-kraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://rohrreinigung-kraft.de/*"
+  to = "https://rohrreinigung-kraft.de/:splat"
+  status = 301
+  force = true
+
+# ===========================================
+# OLD WORDPRESS PAGES REDIRECTS
+# ===========================================
+
+# Privacy/Legal pages
+[[redirects]]
+  from = "/datenschutzerklaerung/"
+  to = "/datenschutz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/datenschutzerklaerung"
+  to = "/datenschutz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy-policy/"
+  to = "/datenschutz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/datenschutz"
+  status = 301
+  force = true
+
+# Impressum variations
+[[redirects]]
+  from = "/impressum/"
+  to = "/impressum"
+  status = 301
+  force = true
+
+# WordPress common pages
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/"
+  status = 301
+  force = true
+
+# Contact page variations
+[[redirects]]
+  from = "/contact/"
+  to = "/kontakt"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/kontakt"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kontakt/"
+  to = "/kontakt"
+  status = 301
+  force = true
+
+# Service pages - old German variations
+[[redirects]]
+  from = "/rohrreinigung/"
+  to = "/service/rohrreinigung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rohrreinigung"
+  to = "/service/rohrreinigung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kanalreinigung/"
+  to = "/service/kanalreinigung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kanalreinigung"
+  to = "/service/kanalreinigung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/notdienst/"
+  to = "/service/rohrreinigung-notdienst"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/notdienst"
+  to = "/service/rohrreinigung-notdienst"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/24-stunden-notdienst/"
+  to = "/service/rohrreinigung-notdienst"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/toilette-verstopft/"
+  to = "/service/toilette-verstopft"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/toilette-verstopft"
+  to = "/service/toilette-verstopft"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/abflussreinigung/"
+  to = "/service/abflussreinigung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/abflussreinigung"
+  to = "/service/abflussreinigung"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kamera-inspektion/"
+  to = "/service/kamera-inspektion"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/kamera-inspektion"
+  to = "/service/kamera-inspektion"
+  status = 301
+  force = true
+
+# Services/Leistungen variations
+[[redirects]]
+  from = "/services/"
+  to = "/leistungen"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services"
+  to = "/leistungen"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/leistungen/"
+  to = "/leistungen"
+  status = 301
+  force = true
+
+# Pricing variations
+[[redirects]]
+  from = "/pricing/"
+  to = "/preise"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pricing"
+  to = "/preise"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/preise/"
+  to = "/preise"
+  status = 301
+  force = true
+
+# About/Team variations
+[[redirects]]
+  from = "/about/"
+  to = "/#about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/#about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ueber-uns/"
+  to = "/#about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ueber-uns"
+  to = "/#about"
+  status = 301
+  force = true
+
+# Blog/News - redirect to home if no blog exists
+[[redirects]]
+  from = "/blog/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/news/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/news"
+  to = "/"
+  status = 301
+  force = true
+
+# Category/Tag pages from WordPress
+[[redirects]]
+  from = "/category/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/*"
+  to = "/"
+  status = 301
+  force = true
+
+# Author pages from WordPress
+[[redirects]]
+  from = "/author/*"
+  to = "/"
+  status = 301
+  force = true
+
+# Feed redirects
+[[redirects]]
+  from = "/feed/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/feed"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rss/"
+  to = "/"
+  status = 301
+  force = true
+
+# Old city pages without proper format
+[[redirects]]
+  from = "/nuernberg/"
+  to = "/nuernberg"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fuerth/"
+  to = "/fuerth"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/erlangen/"
+  to = "/erlangen"
+  status = 301
+  force = true
+
+# Trailing slash normalization for main pages
+[[redirects]]
+  from = "/staedte/"
+  to = "/staedte"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/arbeiten/"
+  to = "/arbeiten"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hausverwaltung/"
+  to = "/hausverwaltung"
+  status = 301
+  force = true
+
+# ===========================================
+# GONE PAGES (410) - Pages that no longer exist
+# ===========================================
+
+# WordPress-specific files that should return 410
+[[redirects]]
+  from = "/xmlrpc.php"
+  to = "/404"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/readme.html"
+  to = "/404"
+  status = 410
+  force = true
+
+[[redirects]]
+  from = "/license.txt"
+  to = "/404"
+  status = 410
+  force = true

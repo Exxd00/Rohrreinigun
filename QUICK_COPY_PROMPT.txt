@@ -1,0 +1,120 @@
+================================================================================
+🔧 الجزء 1: صور قبل وبعد - الخدمات الرئيسية (انسخ هذا أولاً)
+================================================================================
+
+I need you to generate professional before/after images for a German pipe cleaning company (Rohrreinigung). Generate these images one by one:
+
+**SET 1 - Kitchen Sink (Rohrreinigung):**
+- Image 1 (BEFORE): A completely clogged kitchen sink in a modern German home. Dirty standing water with food debris and grease visible. Realistic lighting.
+- Image 2 (AFTER): The same kitchen sink, now completely clean. Water flowing smoothly down the drain. Shiny and spotless.
+
+**SET 2 - Toilet (Rohrreinigung):**
+- Image 3 (BEFORE): A clogged toilet in a German bathroom. Water level very high, almost overflowing. Toilet paper visible. Realistic and urgent scene.
+- Image 4 (AFTER): The same toilet, now clean and functioning normally. Clean bathroom environment.
+
+**SET 3 - Sewer Inspection (Kanalreinigung):**
+- Image 5 (BEFORE): View from a sewer inspection camera showing a blocked pipe with roots, debris, and buildup. Circular view like real sewer cameras.
+- Image 6 (AFTER): Same pipe view after cleaning, smooth interior, no blockages, clean walls.
+
+**SET 4 - Floor Drain (Abflussreinigung):**
+- Image 7 (BEFORE): A clogged floor drain in a German basement (Bodenablauf). Standing water around it, dirt and debris.
+- Image 8 (AFTER): Same floor drain, clean and functioning. Water drains properly, dry floor around it.
+
+**SET 5 - Flooded Basement (Notdienst):**
+- Image 9 (BEFORE): A German basement flooded with 10-20cm of water. Boxes and items floating. Emergency lighting atmosphere.
+- Image 10 (AFTER): Same basement completely dry. Sump pumps visible. Clean and restored.
+
+**SET 6 - Pipe Renovation (Sanierung):**
+- Image 11 (BEFORE): An old corroded cast iron pipe with rust, holes, and leaks. Damage clearly visible.
+- Image 12 (AFTER): Same area with new pipe or pipe lining installed. Professional repair work, no leaks.
+
+Specifications for ALL images:
+- Photorealistic quality
+- 1024x1024 resolution
+- Natural or appropriate lighting
+- NO text or watermarks on images
+- German home/building style
+- Professional quality
+
+Generate images 1-2 first, then I'll ask for the rest.
+
+
+================================================================================
+👥 الجزء 2: صور فريق العمل (انسخ هذا ثانياً)
+================================================================================
+
+Generate 5 professional photos of a German pipe cleaning company team:
+
+**Photo 1 - Male Technician:**
+German man, 30-40 years old, wearing dark navy blue work uniform (polo shirt + work jacket). Standing confidently in front of a service van. Professional smile. Space on left chest for company logo. German street background.
+
+**Photo 2 - Female Technician:**
+German woman, 25-35 years old, same dark navy blue work uniform. Holding a pipe inspection camera device. Professional and confident expression. Natural lighting.
+
+**Photo 3 - Senior Technician:**
+German man, 40-50 years old, same work uniform. Operating a high-pressure cleaning machine. Action shot while working. Focused and professional.
+
+**Photo 4 - Team Group Photo:**
+3 technicians (2 men, 1 woman) in matching dark navy blue uniforms. Standing together beside a service van. All smiling professionally. Team photo style.
+
+**Photo 5 - Customer Service:**
+Young German man, 20-30 years old, in uniform. Standing at a German home's front door, talking to a customer (another person visible). Explaining something politely. Customer service interaction.
+
+Uniform specifications:
+- Dark navy blue color
+- Polo shirt or t-shirt with work vest/jacket
+- Blank space on left chest for company logo
+- Sturdy work pants
+- Safety boots
+- German-looking individuals (Caucasian)
+
+Image specifications:
+- Photorealistic quality
+- 1024x1024 resolution
+- Professional natural lighting
+- NO text or logos on images (we'll add later)
+- German backgrounds (streets, homes, service vehicles)
+- Friendly and professional facial expressions
+
+Generate photo 1 first, then I'll ask for the rest.
+
+
+================================================================================
+📁 أسماء الملفات المطلوبة (للمرجع)
+================================================================================
+
+public/images/gallery/before-after/rohrreinigung/
+  → 1-before.jpg, 1-after.jpg, 2-before.jpg, 2-after.jpg, 3-before.jpg, 3-after.jpg
+
+public/images/gallery/before-after/kanalreinigung/
+  → 1-before.jpg, 1-after.jpg, 2-before.jpg, 2-after.jpg, 3-before.jpg, 3-after.jpg
+
+public/images/gallery/before-after/abflussreinigung/
+  → 1-before.jpg, 1-after.jpg, 2-before.jpg, 2-after.jpg, 3-before.jpg, 3-after.jpg
+
+public/images/gallery/before-after/notdienst/
+  → 1-before.jpg, 1-after.jpg, 2-before.jpg, 2-after.jpg, 3-before.jpg, 3-after.jpg
+
+public/images/gallery/before-after/inspektion/
+  → 1-before.jpg, 1-after.jpg, 2-before.jpg, 2-after.jpg, 3-before.jpg, 3-after.jpg
+
+public/images/gallery/before-after/sanierung/
+  → 1-before.jpg, 1-after.jpg, 2-before.jpg, 2-after.jpg, 3-before.jpg, 3-after.jpg
+
+public/images/team/
+  → team-1.jpg, team-2.jpg, team-3.jpg, team-group.jpg, team-service.jpg
+
+
+================================================================================
+✅ الخطوات بعد توليد الصور
+================================================================================
+
+1. حمّل كل الصور من ChatGPT
+2. سمِّ الصور بالأسماء المذكورة أعلاه
+3. ضعها في المجلدات المناسبة
+4. ارفع التغييرات إلى GitHub
+5. أخبرني وسأحدث الكود تلقائياً
+
+عدد الصور الإجمالي المطلوب: 41 صورة
+- 36 صورة قبل/بعد (6 لكل خدمة × 6 خدمات)
+- 5 صور لفريق العمل

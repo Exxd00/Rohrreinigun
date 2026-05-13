@@ -1,0 +1,158 @@
+Account,Campaign,Ad group,Keyword,Match type,Status
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Rohr verstopft JETZT,[rohr verstopft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Rohr verstopft JETZT,[rohr verstopft hilfe],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Rohr verstopft JETZT,[rohr verstopft was tun],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Rohr verstopft JETZT,rohr verstopft notdienst,Phrase,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Abfluss verstopft Hilfe,[abfluss verstopft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Abfluss verstopft Hilfe,[abfluss verstopft hilfe],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Abfluss verstopft Hilfe,[abfluss geht nicht mehr],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Abfluss verstopft Hilfe,abfluss verstopft,Phrase,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Verstopfung Notfall,[verstopfung notdienst],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Verstopfung Notfall,[rohrreinigung sofort],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Verstopfung JETZT,Verstopfung Notfall,[rohrreinigung notfall],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Toilette verstopft JETZT,[toilette verstopft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Toilette verstopft JETZT,[toilette verstopft hilfe],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Toilette verstopft JETZT,[toilette verstopft was tun],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Toilette verstopft JETZT,toilette verstopft,Phrase,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,WC überläuft Hilfe,[wc verstopft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,WC überläuft Hilfe,[wc überläuft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,WC überläuft Hilfe,[toilette überläuft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Klo verstopft Notfall,[klo verstopft],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Toilette Überlauf,Klo verstopft Notfall,[klo verstopft hilfe],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Keller unter Wasser,[keller unter wasser],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Keller unter Wasser,[wasser im keller],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Keller unter Wasser,[keller überflutet],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Rückstau Notfall,[rückstau],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Rückstau Notfall,[kanal rückstau],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Abwasser tritt aus,[abwasser tritt aus],Exact,Enabled
+789-424-2096,🔴 NOTFALL | Wasser Keller,Abwasser tritt aus,[abwasser austritt],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Rohrreinigung Kosten,[rohrreinigung kosten],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Rohrreinigung Kosten,[was kostet rohrreinigung],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Rohrreinigung Kosten,[rohrreinigung preis],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Rohrreinigung Kosten,rohrreinigung kosten,Phrase,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Was kostet Verstopfung,[was kostet verstopfung beheben],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Was kostet Verstopfung,[abfluss reinigen kosten],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Was kostet Verstopfung,[kanalreinigung kosten],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Toilette entstopfen Preis,[toilette entstopfen kosten],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Toilette entstopfen Preis,[wc verstopft kosten],Exact,Enabled
+789-424-2096,🟡 PREIS | Was kostet,Toilette entstopfen Preis,[toilette verstopft preis],Exact,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Rohrreinigung Festpreis,[rohrreinigung festpreis],Exact,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Rohrreinigung Festpreis,[rohrreinigung ohne überraschung],Exact,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Keine versteckten Kosten,[rohrreinigung keine versteckten kosten],Exact,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Keine versteckten Kosten,[rohrreinigung transparent],Exact,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Transparente Preise,[rohrreinigung günstig],Exact,Enabled
+789-424-2096,🟡 PREIS | Festpreis sucher,Transparente Preise,[rohrreinigung faire preise],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Verstopfung kommt wieder,[verstopfung kommt immer wieder],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Verstopfung kommt wieder,[rohr immer wieder verstopft],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Verstopfung kommt wieder,[abfluss immer wieder verstopft],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Immer wieder verstopft,[toilette verstopft immer wieder],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Immer wieder verstopft,[dusche verstopft immer wieder],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Immer wieder verstopft,[wiederkehrende verstopfung],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Warum verstopft,[warum verstopft rohr],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Wiederkehrend,Warum verstopft,[ursache verstopfung],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Kamera Inspektion Rohr,[kamera inspektion rohr],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Kamera Inspektion Rohr,[rohr kamera],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Kamera Inspektion Rohr,[kamerabefahrung],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,TV Inspektion Kanal,[tv inspektion kanal],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,TV Inspektion Kanal,[kanalinspektion kamera],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Rohrschaden finden,[rohrschaden finden],Exact,Enabled
+789-424-2096,🔵 DIAGNOSE | Kamera Ursache,Rohrschaden finden,[leck im rohr finden],Exact,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Rohrreinigung Hausverwaltung,[rohrreinigung hausverwaltung],Exact,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Rohrreinigung Hausverwaltung,[rohrreinigung für hausverwaltung],Exact,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Rohrreinigung Hausverwaltung,rohrreinigung hausverwaltung,Phrase,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,WEG Rohrreinigung,[rohrreinigung weg],Exact,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,WEG Rohrreinigung,[rohrreinigung eigentümergemeinschaft],Exact,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Mehrfamilienhaus Service,[rohrreinigung mehrfamilienhaus],Exact,Enabled
+789-424-2096,🟢 B2B | Hausverwaltung,Mehrfamilienhaus Service,[rohrreinigung mietshaus],Exact,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Restaurant Rohrreinigung,[rohrreinigung restaurant],Exact,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Restaurant Rohrreinigung,[gastronomie rohrreinigung],Exact,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Fettabscheider Wartung,[fettabscheider reinigung],Exact,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Fettabscheider Wartung,[fettabscheider wartung],Exact,Enabled
+789-424-2096,🟢 B2B | Gewerbe Gastro,Hotel Abfluss Service,[rohrreinigung hotel],Exact,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Rohrreinigung Nürnberg,[rohrreinigung nürnberg],Exact,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Rohrreinigung Nürnberg,rohrreinigung nürnberg,Phrase,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Notdienst Nürnberg,[notdienst rohrreinigung nürnberg],Exact,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Notdienst Nürnberg,[rohrreinigung nürnberg notdienst],Exact,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Verstopfung Nürnberg,[verstopfung nürnberg],Exact,Enabled
+789-424-2096,📍 LOKAL | Nürnberg,Verstopfung Nürnberg,[abfluss verstopft nürnberg],Exact,Enabled
+789-424-2096,📍 LOKAL | Fürth,Rohrreinigung Fürth,[rohrreinigung fürth],Exact,Enabled
+789-424-2096,📍 LOKAL | Fürth,Rohrreinigung Fürth,rohrreinigung fürth,Phrase,Enabled
+789-424-2096,📍 LOKAL | Fürth,Notdienst Fürth,[notdienst rohrreinigung fürth],Exact,Enabled
+789-424-2096,📍 LOKAL | Erlangen,Rohrreinigung Erlangen,[rohrreinigung erlangen],Exact,Enabled
+789-424-2096,📍 LOKAL | Erlangen,Rohrreinigung Erlangen,rohrreinigung erlangen,Phrase,Enabled
+789-424-2096,📍 LOKAL | Erlangen,Notdienst Erlangen,[notdienst rohrreinigung erlangen],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Rohrreinigung Abzocke,[rohrreinigung abzocke],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Rohrreinigung Abzocke,[rohrreinigung betrug],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Rohrreinigung Abzocke,[rohrreinigung abgezockt],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Rohrreinigung Abzocke,rohrreinigung abzocke,Phrase,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Betrug vermeiden,[rohrreinigung seriös],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Betrug vermeiden,[rohrreinigung vertrauenswürdig],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Betrug vermeiden,[rohrreinigung ehrlich],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Seriöser Anbieter,[seriöse rohrreinigung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Seriöser Anbieter,[rohrreinigung ohne abzocke],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Abzocke vermeiden,Seriöser Anbieter,[faire rohrreinigung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Rohrreinigung Erfahrung,[rohrreinigung erfahrung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Rohrreinigung Erfahrung,[beste rohrreinigung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Rohrreinigung Erfahrung,[rohrreinigung test],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Gute Bewertungen,[rohrreinigung bewertung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Gute Bewertungen,[rohrreinigung google bewertung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Gute Bewertungen,[rohrreinigung empfehlung],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Empfehlung gesucht,[rohrreinigung empfohlen],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Empfehlung gesucht,[gute rohrreinigung nürnberg],Exact,Enabled
+789-424-2096,⚡ KONKURRENZ | Besser als andere,Empfehlung gesucht,[rohrreinigung tipp],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Mieter Verstopfung,[mieter verstopfung],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Mieter Verstopfung,[mietwohnung verstopft],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Mieter Verstopfung,[wer zahlt verstopfung mieter],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Vermieter zahlt nicht,[vermieter zahlt rohrreinigung nicht],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Vermieter zahlt nicht,[rohrreinigung mieter oder vermieter],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Wer zahlt Rohrreinigung,[wer zahlt rohrreinigung],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Wer zahlt Rohrreinigung,[rohrreinigung kosten mieter],Exact,Enabled
+789-424-2096,🏠 SITUATION | Mieter Probleme,Wer zahlt Rohrreinigung,[verstopfung wer zahlt],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Eigenheim Verstopfung,[eigenheim verstopfung],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Eigenheim Verstopfung,[einfamilienhaus verstopft],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Eigenheim Verstopfung,[haus rohr verstopft],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Haus Abfluss Problem,[haus abfluss verstopft],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Haus Abfluss Problem,[haus abfluss problem],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Haus Abfluss Problem,[altbau verstopfung],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Grundstück Kanal,[grundstückskanal verstopft],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Grundstück Kanal,[hausanschluss verstopft],Exact,Enabled
+789-424-2096,🏠 SITUATION | Hausbesitzer,Grundstück Kanal,[grundleitung verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Dusche verstopft,[dusche verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Dusche verstopft,[duschabfluss verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Dusche verstopft,[dusche läuft nicht ab],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Dusche verstopft,dusche verstopft,Phrase,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Badewanne läuft nicht ab,[badewanne verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Badewanne läuft nicht ab,[badewanne läuft nicht ab],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Badewanne läuft nicht ab,[badewannenabfluss verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Haare im Abfluss,[haare im abfluss],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Haare im Abfluss,[haare verstopfung],Exact,Enabled
+789-424-2096,🎯 MICRO | Dusche Badewanne,Haare im Abfluss,[abfluss haare entfernen],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Spüle verstopft,[spüle verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Spüle verstopft,[küchenspüle verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Spüle verstopft,[spülbecken verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Spüle verstopft,spüle verstopft,Phrase,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Küche Abfluss,[küche abfluss verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Küche Abfluss,[küche wasser steht],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Küche Abfluss,[küche läuft nicht ab],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Fett im Rohr,[fett im rohr],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Fett im Rohr,[fettverstopfung],Exact,Enabled
+789-424-2096,🎯 MICRO | Küche Spüle,Fett im Rohr,[fett abfluss verstopft],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Kanalgeruch Wohnung,[kanalgeruch wohnung],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Kanalgeruch Wohnung,[kanalgeruch haus],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Kanalgeruch Wohnung,[gestank aus kanal],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Abfluss stinkt,[abfluss stinkt],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Abfluss stinkt,[abfluss riecht],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Abfluss stinkt,[abfluss geruch],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Abfluss stinkt,abfluss stinkt,Phrase,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Gestank aus Rohr,[gestank aus rohr],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Gestank aus Rohr,[rohr stinkt],Exact,Enabled
+789-424-2096,🎯 MICRO | Geruch Kanal,Gestank aus Rohr,[kanal riecht übel],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Rohrreinigung Wartung,[rohrreinigung wartung],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Rohrreinigung Wartung,[rohrreinigung wartungsvertrag],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Rohrreinigung Wartung,[rohre warten lassen],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Vorsorge Reinigung,[vorsorge rohrreinigung],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Vorsorge Reinigung,[präventive rohrreinigung],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Vorsorge Reinigung,[vorbeugende reinigung],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Regelmäßige Reinigung,[regelmäßige rohrreinigung],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Regelmäßige Reinigung,[rohr regelmäßig reinigen],Exact,Enabled
+789-424-2096,🔧 SERVICE | Wartung Vorsorge,Regelmäßige Reinigung,[abfluss pflege],Exact,Enabled
