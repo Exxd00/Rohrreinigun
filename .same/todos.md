@@ -18,10 +18,13 @@ Supabase Bucket `viedos` (public) – 3 Videos + 12 Fotos echter Einsätze.
 - [x] Poster geschärft (Stromkabel klar sichtbar)
 - [x] Lint OK
 
-## FOTOS (Priorität 2 – danach)
-- [x] 11 Fotos aus Supabase geladen (public/images/work/)
-- [ ] Alte "Arbeiten"-Bilder ersetzen (gallery + beforeAfterGallery in company.ts)
-- [ ] Echte Vorher/Nachher: kanalreinigung-vorher/-nachher
-- [ ] Foto-Kategorien: Ursachen (Wurzeln, Fett, Ablagerungen) + Technik (Kamera)
-- [ ] Mitarbeiter-Foto ggf. in AboutUs
-- [ ] Lint + Version
+## FOTOS (Priorität 2) ✅ FERTIG
+- [x] 12 Fotos aus Supabase (public/work/, komprimiert)
+- [x] Alte "Arbeiten"-Bilder ersetzt (gallery + beforeAfterGallery in company.ts → /work/)
+- [x] Echtes Vorher/Nachher: kanalreinigung-vorher/-nachher (interaktiver Slider)
+- [x] Foto-Kategorien: Kanalreinigung, Rohrreinigung, Abflussreinigung, Kamera-Inspektion
+- [x] Homepage Gallery neu gebaut (Inline Vorher/Nachher + Foto-Grid + Lightbox)
+- [x] /arbeiten nutzt echte Fotos (mit Kategorie-Filter)
+- [x] Mitarbeiter-Foto in AboutUs eingebunden
+- [x] Alte Platzhalter-Bilder gelöscht (26 Dateien) + BeforeAfterSlider.tsx entfernt
+- [x] Lint OK

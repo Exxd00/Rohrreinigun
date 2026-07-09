@@ -328,286 +328,101 @@ export const testimonials = [
   }
 ];
 
-// Work gallery with real before/after images
+// Work gallery — echte Fotos aus unseren eigenen Einsätzen (Quelle: Firmenmaterial)
 export const gallery = [
-  // Abflussreinigung - Before/After
   {
     id: 1,
-    title: "Duschablauf Reinigung",
-    description: "Verstopfter Duschablauf - Vorher",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    image: "/images/abflussreinigung-1-before.jpg",
-    type: "before"
+    title: "Kanalschacht – Vorher",
+    description: "Stark verschmutzter Kanalschacht mit Fett und Ablagerungen",
+    category: "Kanalreinigung",
+    serviceSlug: "kanalreinigung",
+    image: "/work/kanalreinigung-vorher.jpg",
   },
   {
     id: 2,
-    title: "Duschablauf Reinigung",
-    description: "Sauberer Duschablauf - Nachher",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    image: "/images/abflussreinigung-1-after.jpg",
-    type: "after"
+    title: "Kanalschacht – Nachher",
+    description: "Derselbe Schacht nach unserer Hochdruckreinigung",
+    category: "Kanalreinigung",
+    serviceSlug: "kanalreinigung",
+    image: "/work/kanalreinigung-nachher.jpg",
   },
   {
     id: 3,
-    title: "Bodenablauf Reinigung",
-    description: "Verstopfter Bodenablauf - Vorher",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    image: "/images/abflussreinigung-2-before.jpg",
-    type: "before"
+    title: "Wurzeleinwuchs im Rohr",
+    description: "Eingewachsene Wurzeln – eine der häufigsten Verstopfungsursachen",
+    category: "Rohrreinigung",
+    serviceSlug: "rohrreinigung",
+    image: "/work/verstopfung-wurzeln.jpg",
   },
   {
     id: 4,
-    title: "Bodenablauf Reinigung",
-    description: "Gereinigter Bodenablauf - Nachher",
+    title: "Fettablagerungen im Abfluss",
+    description: "Verhärtete Fettschichten verengen den Abfluss – typisch in Küche & Gastro",
     category: "Abflussreinigung",
     serviceSlug: "abflussreinigung",
-    image: "/images/abflussreinigung-2-after.jpg",
-    type: "after"
+    image: "/work/fettablagerungen.jpg",
   },
   {
     id: 5,
-    title: "Badezimmer Ablauf",
-    description: "Verschmutzter Ablauf - Vorher",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    image: "/images/abflussreinigung-3-before.jpg",
-    type: "before"
+    title: "Ablagerungen im Rohr",
+    description: "Feste Ablagerungen an der Rohrwand reduzieren den Durchfluss",
+    category: "Kanalreinigung",
+    serviceSlug: "kanalreinigung",
+    image: "/work/ablagerung.jpg",
   },
   {
     id: 6,
-    title: "Badezimmer Ablauf",
-    description: "Professionell gereinigt - Nachher",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    image: "/images/abflussreinigung-3-after.jpg",
-    type: "after"
-  },
-  // Kanalreinigung
-  {
-    id: 7,
-    title: "Kanalreinigung",
-    description: "Verstopfter Kanal - Vorher",
+    title: "Starke Verkrustungen",
+    description: "Jahrelange Ablagerungen verengen den Rohrquerschnitt massiv",
     category: "Kanalreinigung",
     serviceSlug: "kanalreinigung",
-    image: "/images/kanalreinigung-1-before.jpg",
-    type: "before"
+    image: "/work/ablagerungen.jpg",
+  },
+  {
+    id: 7,
+    title: "Verschmutzung im Rohr",
+    description: "Schlamm und Schmutz im Rohrinneren vor der Reinigung",
+    category: "Rohrreinigung",
+    serviceSlug: "rohrreinigung",
+    image: "/work/verschmutzungen-rohr.jpg",
   },
   {
     id: 8,
-    title: "Kanalreinigung",
-    description: "Gereinigter Kanal - Nachher",
-    category: "Kanalreinigung",
-    serviceSlug: "kanalreinigung",
-    image: "/images/kanalreinigung-1-after.jpg",
-    type: "after"
+    title: "TV-Kamerabefahrung",
+    description: "Millimetergenaue Ortung von Schäden & Verstopfungen per HD-Kamera",
+    category: "Kamera-Inspektion",
+    serviceSlug: "kamera-inspektion",
+    image: "/work/kamerabefahrung.jpg",
   },
   {
     id: 9,
-    title: "Kanalreinigung",
-    description: "Kanal mit Ablagerungen - Vorher",
-    category: "Kanalreinigung",
-    serviceSlug: "kanalreinigung",
-    image: "/images/kanalreinigung-2-before.jpg",
-    type: "before"
+    title: "Kamera-Inspektion der Leitung",
+    description: "Dokumentierte Zustandsprüfung Ihrer Rohrleitung",
+    category: "Kamera-Inspektion",
+    serviceSlug: "kamera-inspektion",
+    image: "/work/kamerabefahrung-2.jpg",
   },
   {
     id: 10,
-    title: "Kanalreinigung",
-    description: "Sauberer Kanal - Nachher",
-    category: "Kanalreinigung",
-    serviceSlug: "kanalreinigung",
-    image: "/images/kanalreinigung-2-after.jpg",
-    type: "after"
+    title: "Bodenablauf reinigen",
+    description: "Gründliche Reinigung eines verstopften Bodenablaufs",
+    category: "Abflussreinigung",
+    serviceSlug: "abflussreinigung",
+    image: "/work/bodenablauf-reinigen.jpg",
   },
-  {
-    id: 11,
-    title: "Kanalreinigung",
-    description: "Blockierter Kanal - Vorher",
-    category: "Kanalreinigung",
-    serviceSlug: "kanalreinigung",
-    image: "/images/kanalreinigung-3-before.jpg",
-    type: "before"
-  },
-  {
-    id: 12,
-    title: "Kanalreinigung",
-    description: "Freier Kanal - Nachher",
-    category: "Kanalreinigung",
-    serviceSlug: "kanalreinigung",
-    image: "/images/kanalreinigung-3-after.jpg",
-    type: "after"
-  },
-  // Rohrreinigung
-  {
-    id: 13,
-    title: "Rohrreinigung",
-    description: "Verstopftes Rohr - Vorher",
-    category: "Rohrreinigung",
-    serviceSlug: "rohrreinigung",
-    image: "/images/rohrreinigung-2-before.jpg",
-    type: "before"
-  },
-  {
-    id: 14,
-    title: "Rohrreinigung",
-    description: "Gereinigtes Rohr - Nachher",
-    category: "Rohrreinigung",
-    serviceSlug: "rohrreinigung",
-    image: "/images/rohrreinigung-2-after.jpg",
-    type: "after"
-  },
-  // Inspektion
-  {
-    id: 15,
-    title: "Kamera Inspektion",
-    description: "Rohrinspektion - Vorher",
-    category: "Kamera-Inspektion",
-    serviceSlug: "kamera-inspektion",
-    image: "/images/inspektion-1-before.jpg",
-    type: "before"
-  },
-  {
-    id: 16,
-    title: "Kamera Inspektion",
-    description: "Nach der Inspektion - Nachher",
-    category: "Kamera-Inspektion",
-    serviceSlug: "kamera-inspektion",
-    image: "/images/inspektion-1-afterr.jpg",
-    type: "after"
-  },
-  {
-    id: 17,
-    title: "Kamera Inspektion",
-    description: "Rohrinspektion - Vorher",
-    category: "Kamera-Inspektion",
-    serviceSlug: "kamera-inspektion",
-    image: "/images/inspektion-2-before.jpg",
-    type: "before"
-  },
-  {
-    id: 18,
-    title: "Kamera Inspektion",
-    description: "Nach der Inspektion - Nachher",
-    category: "Kamera-Inspektion",
-    serviceSlug: "kamera-inspektion",
-    image: "/images/inspektion-2-after.jpg",
-    type: "after"
-  },
-  // Notdienst
-  {
-    id: 19,
-    title: "Notdienst Einsatz",
-    description: "Notfall - Vorher",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    image: "/images/notdienst-1-before.jpg",
-    type: "before"
-  },
-  {
-    id: 20,
-    title: "Notdienst Einsatz",
-    description: "Problem gelöst - Nachher",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    image: "/images/notdienst-1-after.jpg",
-    type: "after"
-  },
-  {
-    id: 21,
-    title: "Notdienst Einsatz",
-    description: "Notfall - Vorher",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    image: "/images/notdienst-2-before.jpg",
-    type: "before"
-  },
-  {
-    id: 22,
-    title: "Notdienst Einsatz",
-    description: "Problem gelöst - Nachher",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    image: "/images/notdienst-2-after.jpg",
-    type: "after"
-  },
-  {
-    id: 23,
-    title: "Notdienst Einsatz",
-    description: "Notfall - Vorher",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    image: "/images/notdienst-3-before.jpg",
-    type: "before"
-  },
-  {
-    id: 24,
-    title: "Notdienst Einsatz",
-    description: "Problem gelöst - Nachher",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    image: "/images/notdienst-3-after.jpg",
-    type: "after"
-  }
 ];
 
-// Before/After pairs for easy access - reduced to 6 for homepage
+// Echtes Vorher/Nachher-Paar (Kanalschacht) für den interaktiven Vergleich
 export const beforeAfterGallery = [
   {
     id: 1,
-    title: "Duschablauf Reinigung",
-    description: "Professionelle Reinigung eines verstopften Duschablaufs",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    beforeImage: "/images/abflussreinigung-1-before.jpg",
-    afterImage: "/images/abflussreinigung-1-after.jpg"
-  },
-  {
-    id: 2,
-    title: "Kanalreinigung",
-    description: "Professionelle Kanalreinigung mit Hochdruck",
+    title: "Kanalschacht-Reinigung",
+    description:
+      "Verstopfter Kanalschacht mit Fett & Ablagerungen – nach der Hochdruckreinigung wieder voll funktionsfähig.",
     category: "Kanalreinigung",
     serviceSlug: "kanalreinigung",
-    beforeImage: "/images/kanalreinigung-1-before.jpg",
-    afterImage: "/images/kanalreinigung-1-after.jpg"
-  },
-  {
-    id: 3,
-    title: "Rohrreinigung",
-    description: "Professionelle Rohrreinigung",
-    category: "Rohrreinigung",
-    serviceSlug: "rohrreinigung",
-    beforeImage: "/images/rohrreinigung-2-before.jpg",
-    afterImage: "/images/rohrreinigung-2-after.jpg"
-  },
-  {
-    id: 4,
-    title: "Kamera Inspektion",
-    description: "Professionelle Rohrinspektion mit Kamera",
-    category: "Kamera-Inspektion",
-    serviceSlug: "kamera-inspektion",
-    beforeImage: "/images/inspektion-1-before.jpg",
-    afterImage: "/images/inspektion-1-afterr.jpg"
-  },
-  {
-    id: 5,
-    title: "Notdienst Einsatz",
-    description: "Schnelle Hilfe im Notfall",
-    category: "Notdienst",
-    serviceSlug: "notdienst",
-    beforeImage: "/images/notdienst-1-before.jpg",
-    afterImage: "/images/notdienst-1-after.jpg"
-  },
-  {
-    id: 6,
-    title: "Bodenablauf Reinigung",
-    description: "Entfernung von Schmutz aus dem Bodenablauf",
-    category: "Abflussreinigung",
-    serviceSlug: "abflussreinigung",
-    beforeImage: "/images/abflussreinigung-2-before.jpg",
-    afterImage: "/images/abflussreinigung-2-after.jpg"
+    beforeImage: "/work/kanalreinigung-vorher.jpg",
+    afterImage: "/work/kanalreinigung-nachher.jpg",
   },
 ];
 

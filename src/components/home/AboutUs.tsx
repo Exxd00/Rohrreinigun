@@ -99,8 +99,8 @@ export default function AboutUs() {
               {/* Main Image */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/team-service.jpg"
-                  alt="Rohrreinigung Kraft Team bei der Arbeit"
+                  src="/work/mitarbeiter.jpg"
+                  alt="Rohrreinigung Kraft Mitarbeiter bei der Arbeit"
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover"
