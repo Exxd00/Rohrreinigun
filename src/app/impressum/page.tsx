@@ -40,6 +40,9 @@ export default function ImpressumPage() {
                     <h3 className="font-bold text-gray-900 dark:text-white mb-1">
                       {company.name}
                     </h3>
+                    <p className="text-primary text-sm font-semibold mb-1">
+                      Inhaber: {company.legal.inhaber}
+                    </p>
                     <p className="text-gray-600 dark:text-gray-400 text-sm">
                       {company.address.street}<br />
                       {company.address.zip} {company.address.city}-{company.address.district}<br />
@@ -139,6 +142,7 @@ export default function ImpressumPage() {
                     Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 text-sm">
+                    <span className="font-semibold text-gray-900 dark:text-white">{company.legal.inhaber}</span><br />
                     {company.name}<br />
                     {company.address.street}<br />
                     {company.address.zip} {company.address.city}

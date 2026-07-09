@@ -79,6 +79,7 @@ export default function DatenschutzPage() {
         <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             <strong className="text-gray-900 dark:text-white">{company.name}</strong><br />
+            Inhaber: {company.legal.inhaber}<br />
             {company.address.street}<br />
             {company.address.zip} {company.address.city}<br />
             {company.address.region}, {company.address.country}<br /><br />

@@ -39,7 +39,7 @@ export const company = {
   legal: {
     registergericht: "Amtsgericht Nürnberg",
     ustIdNr: "DE362340841",
-    inhaber: "Rohrreinigung Kraft",
+    inhaber: "Michael Kraft",
   },
 
   hours: {
