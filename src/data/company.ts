@@ -611,6 +611,52 @@ export const beforeAfterGallery = [
   },
 ];
 
+// Real work videos (transcoded from company footage to web-friendly H.264 MP4)
+export const workVideos = [
+  {
+    id: "kamerabefahrung-stromkabel",
+    title: "Kamera-Inspektion: Stromkabel in der Leitung",
+    shortTitle: "TV-Kamerabefahrung",
+    description:
+      "Echte TV-Kamerabefahrung: In dieser Abwasserleitung entdecken wir ein quer verlegtes Stromkabel, das für Rückstau sorgt. So finden wir die Ursache – millimetergenau und ohne Aufgraben.",
+    category: "Kamera-Inspektion",
+    serviceSlug: "kamera-inspektion",
+    src: "/videos/kamerabefahrung-stromkabel.mp4",
+    poster: "/videos/kamerabefahrung-stromkabel-poster.jpg",
+    orientation: "landscape" as const,
+    duration: "1:48",
+    featured: true,
+  },
+  {
+    id: "einsatz-kanal",
+    title: "Kanalschacht vor dem Einsatz",
+    shortTitle: "Kanalschacht",
+    description:
+      "Ein stark verschmutzter Kanalschacht vor unserem Einsatz – mit Fett, Schlamm und Ablagerungen komplett zugesetzt. Mit Hochdruck-Spültechnik machen wir ihn wieder frei.",
+    category: "Kanalreinigung",
+    serviceSlug: "kanalreinigung",
+    src: "/videos/einsatz-kanal.mp4",
+    poster: "/videos/einsatz-kanal-poster.jpg",
+    orientation: "portrait" as const,
+    duration: "0:10",
+    featured: false,
+  },
+  {
+    id: "einsatz-rohr",
+    title: "Verkalkte Rohrleitung von innen",
+    shortTitle: "Rohr von innen",
+    description:
+      "Blick ins Innere einer stark verkalkten Rohrleitung vor der Reinigung. Ablagerungen verengen den Querschnitt massiv – ein klassischer Fall für unsere Fräs- und Spültechnik.",
+    category: "Rohrreinigung",
+    serviceSlug: "rohrreinigung",
+    src: "/videos/einsatz-rohr.mp4",
+    poster: "/videos/einsatz-rohr-poster.jpg",
+    orientation: "portrait" as const,
+    duration: "0:10",
+    featured: false,
+  },
+];
+
 // How it works steps
 export const howItWorks = [
   {

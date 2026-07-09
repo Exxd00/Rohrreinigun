@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { gallery } from "@/data/company";
 import { company } from "@/data/company";
 import { useState } from "react";
+import VideoShowcase from "@/components/home/VideoShowcase";
 
 const categoryIcons: Record<string, React.ElementType> = {
   Kanalreinigung: Wrench,
@@ -41,6 +42,9 @@ export default function ArbeitenPage() {
           </div>
         </div>
       </section>
+
+      {/* Video Showcase - Real footage from our jobs */}
+      <VideoShowcase />
 
       {/* Filter */}
       <section className="py-8 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 sticky top-16 z-40">

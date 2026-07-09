@@ -6,6 +6,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import WhyUs from "@/components/home/WhyUs";
 import AboutUs from "@/components/home/AboutUs";
 import Testimonials from "@/components/home/Testimonials";
+import VideoShowcase from "@/components/home/VideoShowcase";
 import Gallery from "@/components/home/Gallery";
 import CTASection from "@/components/home/CTASection";
 import EmergencyGuide from "@/components/home/EmergencyGuide";
@@ -427,7 +428,10 @@ export default function Home() {
       {/* 7. Testimonials */}
       <Testimonials />
 
-      {/* 8. Gallery */}
+      {/* 8. Video Showcase - Real footage from our jobs */}
+      <VideoShowcase />
+
+      {/* 9. Gallery */}
       <Gallery />
 
       {/* 9. CTA Section */}
