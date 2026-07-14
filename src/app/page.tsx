@@ -6,7 +6,6 @@ import HowItWorks from "@/components/home/HowItWorks";
 import WhyUs from "@/components/home/WhyUs";
 import AboutUs from "@/components/home/AboutUs";
 import Testimonials from "@/components/home/Testimonials";
-import VideoShowcase from "@/components/home/VideoShowcase";
 import Gallery from "@/components/home/Gallery";
 import CTASection from "@/components/home/CTASection";
 import EmergencyGuide from "@/components/home/EmergencyGuide";
@@ -410,10 +409,7 @@ export default function Home() {
       {/* 3. Trust Section */}
       <TrustSection />
 
-      {/* 4. Video Showcase - Full gallery (featured + portrait reels) */}
-      <VideoShowcase />
-
-      {/* 5. Contact Form */}
+      {/* 4. Contact Form */}
       <ContactForm />
 
       {/* 6. How It Works */}

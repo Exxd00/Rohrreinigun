@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import {
   Phone,
@@ -18,6 +18,9 @@ import {
   ArrowRight,
   Zap,
   VolumeX,
+  Volume2,
+  Maximize2,
+  X,
 } from "lucide-react";
 import { company, workVideos } from "@/data/company";
 import CallConfirmModal from "@/components/layout/CallConfirmModal";
@@ -72,6 +75,9 @@ export default function HeroSection() {
   const [soundOn, setSoundOn] = useState(false);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const heroVideo = workVideos.find((v) => v.featured) ?? workVideos[0];
+  const reels = workVideos.filter((v) => !v.featured);
+  const [lightboxId, setLightboxId] = useState<string | null>(null);
+  const activeVideo = workVideos.find((v) => v.id === lightboxId) ?? null;
 
   const toggleSound = () => {
     const v = heroVideoRef.current;
@@ -81,6 +87,21 @@ export default function HeroSection() {
     v.play().catch(() => {});
     setSoundOn(next);
   };
+
+  // Escape closes the reel lightbox + lock scroll while open
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxId(null);
+    };
+    if (lightboxId) {
+      window.addEventListener("keydown", onKey);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightboxId]);
 
   return (
     <>
@@ -213,7 +234,7 @@ export default function HeroSection() {
             </div>
 
             {/* VIDEO COLUMN (first visually on mobile) */}
-            <div className="order-1 lg:order-2">
+            <div className="order-1 lg:order-2 space-y-3 md:space-y-4">
               <div className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black">
                 <div className="relative aspect-video">
                   <video
@@ -273,6 +294,67 @@ export default function HeroSection() {
                   </div>
                 </div>
               </div>
+
+              {/* Other clips — portrait reels, tap to enlarge */}
+              {reels.length > 0 && (
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                  {reels.map((reel) => (
+                    <button
+                      key={reel.id}
+                      type="button"
+                      onClick={() => setLightboxId(reel.id)}
+                      className="group/reel relative rounded-xl md:rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-xl bg-black text-left"
+                    >
+                      <div className="relative aspect-[9/16]">
+                        <video
+                          src={reel.src}
+                          poster={reel.poster}
+                          muted
+                          loop
+                          autoPlay
+                          playsInline
+                          preload="metadata"
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/20" />
+
+                        {/* sound hint */}
+                        <div className="absolute top-2 right-2">
+                          <span className="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
+                            <Volume2 className="w-3.5 h-3.5 text-white" />
+                          </span>
+                        </div>
+
+                        {/* label */}
+                        <div className="absolute bottom-2 left-2 right-2">
+                          <span className="inline-block px-1.5 py-0.5 mb-1 rounded bg-primary text-white text-[9px] font-bold uppercase tracking-wide">
+                            {reel.category}
+                          </span>
+                          <p className="text-white text-xs font-semibold leading-tight">
+                            {reel.shortTitle}
+                          </p>
+                        </div>
+
+                        {/* hover expand */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/reel:opacity-100 transition-opacity">
+                          <span className="w-11 h-11 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
+                            <Maximize2 className="w-4 h-4 text-gray-900" />
+                          </span>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Link to all work */}
+              <Link
+                href="/arbeiten"
+                className="flex items-center justify-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors pt-1"
+              >
+                Alle Arbeiten ansehen
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
 
           </div>
@@ -432,6 +514,46 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
+
+      {/* Video Lightbox (for portrait reels) */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+          onClick={() => setLightboxId(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxId(null)}
+            aria-label="Schließen"
+            className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <div
+            className="relative flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              key={activeVideo.id}
+              src={activeVideo.src}
+              poster={activeVideo.poster}
+              controls
+              autoPlay
+              playsInline
+              className={
+                activeVideo.orientation === "portrait"
+                  ? "rounded-2xl shadow-2xl max-h-[82vh] w-auto"
+                  : "rounded-2xl shadow-2xl max-w-[92vw] max-h-[82vh]"
+              }
+            />
+            <div className="mt-4 text-center max-w-md">
+              <h3 className="text-white font-bold text-lg">{activeVideo.title}</h3>
+              <p className="text-gray-400 text-sm mt-1">{activeVideo.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
