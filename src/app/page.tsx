@@ -401,17 +401,17 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section - now features the camera video above the fold */}
       <HeroSection />
 
-      {/* 2. Video Showcase - Real footage grabs attention early & boosts dwell time */}
-      <VideoShowcase />
-
-      {/* 3. Pricing Preview - Important for Google Ads */}
+      {/* 2. Pricing Preview - Important for Google Ads */}
       <PricingPreview />
 
-      {/* 4. Trust Section */}
+      {/* 3. Trust Section */}
       <TrustSection />
+
+      {/* 4. Video Showcase - Full gallery (featured + portrait reels) */}
+      <VideoShowcase />
 
       {/* 5. Contact Form */}
       <ContactForm />

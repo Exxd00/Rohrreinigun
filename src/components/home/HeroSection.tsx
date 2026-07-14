@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import {
   Phone,
@@ -16,9 +16,10 @@ import {
   Building2,
   Camera,
   ArrowRight,
-  Zap
+  Zap,
+  VolumeX,
 } from "lucide-react";
-import { company } from "@/data/company";
+import { company, workVideos } from "@/data/company";
 import CallConfirmModal from "@/components/layout/CallConfirmModal";
 
 const problemCards = [
@@ -68,6 +69,18 @@ const problemCards = [
 
 export default function HeroSection() {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const heroVideo = workVideos.find((v) => v.featured) ?? workVideos[0];
+
+  const toggleSound = () => {
+    const v = heroVideoRef.current;
+    if (!v) return;
+    const next = !soundOn;
+    v.muted = !next;
+    v.play().catch(() => {});
+    setSoundOn(next);
+  };
 
   return (
     <>
@@ -91,112 +104,174 @@ export default function HeroSection() {
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-primary to-emerald-500" />
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
 
-            {/* Availability Badge */}
-            <div className="flex justify-center mb-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="text-sm font-medium text-emerald-300">
-                  {company.urgency.availableTechnicians} Techniker jetzt verfügbar
-                </span>
+            {/* CONTENT COLUMN (H1 first in DOM for SEO) */}
+            <div className="order-2 lg:order-1 text-center lg:text-left">
+              {/* Availability Badge */}
+              <div className="flex justify-center lg:justify-start mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-sm font-medium text-emerald-300">
+                    {company.urgency.availableTechnicians} Techniker jetzt verfügbar
+                  </span>
+                </div>
+              </div>
+
+              {/* MAIN HEADLINE - Differentiating */}
+              <div className="mb-6">
+                {/* Location Badge - Prominent Nürnberg */}
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 bg-white/10 border border-white/20 rounded-full">
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span className="text-sm md:text-base font-semibold text-white">
+                    Rohrreinigung <span className="text-primary">Nürnberg</span> & Mittelfranken
+                  </span>
+                </div>
+
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 leading-tight">
+                  <span className="text-white">Festpreis </span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
+                    VOR
+                  </span>
+                  <span className="text-white"> dem ersten Handgriff.</span>
+                </h1>
+                <p className="text-lg md:text-2xl text-white/90 font-medium mb-2">
+                  Ihr Rohrreiniger in Nürnberg – Klarheit, bevor Sie zahlen.
+                </p>
+                <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto lg:mx-0">
+                  Wir kommen, schauen, erklären und nennen den Preis.
+                  Dann entscheiden <strong className="text-white">SIE</strong>. Kein Druck. Keine Überraschungen.
+                </p>
+              </div>
+
+              {/* TRUST GUARANTEES BAR */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-6 mb-6">
+                <div className="flex items-center gap-2 text-white/90">
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                  <span className="text-xs md:text-sm font-medium">Diagnose kostenlos</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                  <span className="text-xs md:text-sm font-medium">Festpreis vor Arbeit</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                  <span className="text-xs md:text-sm font-medium">Kein Start ohne OK</span>
+                </div>
+              </div>
+
+              {/* MAIN CTA */}
+              <div className="max-w-md mx-auto lg:mx-0 mb-8">
+                <button
+                  onClick={() => setIsCallModalOpen(true)}
+                  className="w-full bg-gradient-to-r from-primary to-cyan-500 rounded-2xl px-6 py-5 flex items-center justify-center gap-4 shadow-2xl shadow-primary/30 hover:shadow-primary/50 active:scale-[0.98] transition-all group"
+                >
+                  <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Phone className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-white/80 text-sm font-medium">Jetzt kostenlos anrufen</p>
+                    <p className="text-white text-2xl md:text-3xl font-black tracking-tight">
+                      {company.contact.phoneDisplay}
+                    </p>
+                  </div>
+                </button>
+
+                {/* Secondary CTA */}
+                <Link href="/kontakt" className="block mt-3">
+                  <div className="w-full h-12 bg-white/10 text-white border border-white/20 font-semibold rounded-xl flex items-center justify-center gap-2 text-sm hover:bg-white/20 transition-colors">
+                    <Zap className="w-4 h-4 text-yellow-400" />
+                    Rückruf in 5 Minuten anfordern
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Link>
+              </div>
+
+              {/* TRUST INDICATORS */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-8">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-4 h-4 md:w-5 md:h-5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-white font-semibold text-sm md:text-base">
+                    {company.rating.displayText}
+                  </span>
+                  <span className="text-white/60 text-xs md:text-sm">
+                    ({company.rating.reviewCount} Bewertungen)
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-white/80">
+                  <Clock className="w-4 h-4 text-amber-400" />
+                  <span className="text-white/80 text-sm">In {company.urgency.responseTime} Min vor Ort</span>
+                </div>
               </div>
             </div>
 
-            {/* MAIN HEADLINE - Differentiating */}
-            <div className="text-center mb-6">
-              {/* Location Badge - Prominent Nürnberg */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 bg-white/10 border border-white/20 rounded-full">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-sm md:text-base font-semibold text-white">
-                  Rohrreinigung <span className="text-primary">Nürnberg</span> & Mittelfranken
-                </span>
-              </div>
+            {/* VIDEO COLUMN (first visually on mobile) */}
+            <div className="order-1 lg:order-2">
+              <div className="group relative rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black">
+                <div className="relative aspect-video">
+                  <video
+                    ref={heroVideoRef}
+                    src={heroVideo.src}
+                    poster={heroVideo.poster}
+                    autoPlay
+                    muted={!soundOn}
+                    loop={!soundOn}
+                    controls={soundOn}
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                    onEnded={() => setSoundOn(false)}
+                  />
 
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight">
-                <span className="text-white">Festpreis </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">
-                  VOR
-                </span>
-                <span className="text-white"> dem ersten Handgriff.</span>
-              </h1>
-              <p className="text-lg md:text-2xl text-white/90 font-medium mb-2">
-                Ihr Rohrreiniger in Nürnberg – Klarheit, bevor Sie zahlen.
-              </p>
-              <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto">
-                Wir kommen, schauen, erklären und nennen den Preis.
-                Dann entscheiden <strong className="text-white">SIE</strong>. Kein Druck. Keine Überraschungen.
-              </p>
-            </div>
+                  {!soundOn && (
+                    <button
+                      type="button"
+                      onClick={toggleSound}
+                      aria-label="Ton einschalten"
+                      className="group/sound absolute inset-0 flex items-end justify-center pb-4 md:pb-5 bg-gradient-to-t from-black/60 via-transparent to-black/10"
+                    >
+                      <span className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/95 text-gray-900 text-xs md:text-sm font-bold shadow-2xl group-hover/sound:scale-105 group-hover/sound:bg-white transition-all">
+                        <span className="relative flex h-2.5 w-2.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                        </span>
+                        <VolumeX className="w-4 h-4" />
+                        Tippen für Ton
+                      </span>
+                    </button>
+                  )}
 
-            {/* TRUST GUARANTEES BAR */}
-            <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-6">
-              <div className="flex items-center gap-2 text-white/90">
-                <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                <span className="text-xs md:text-sm font-medium">Diagnose kostenlos</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <Shield className="w-4 h-4 md:w-5 md:h-5 text-primary" />
-                <span className="text-xs md:text-sm font-medium">Festpreis vor Arbeit</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                <span className="text-xs md:text-sm font-medium">Kein Start ohne OK</span>
-              </div>
-            </div>
-
-            {/* MAIN CTA */}
-            <div className="max-w-md mx-auto mb-8">
-              <button
-                onClick={() => setIsCallModalOpen(true)}
-                className="w-full bg-gradient-to-r from-primary to-cyan-500 rounded-2xl px-6 py-5 flex items-center justify-center gap-4 shadow-2xl shadow-primary/30 hover:shadow-primary/50 active:scale-[0.98] transition-all group"
-              >
-                <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Phone className="w-7 h-7 text-white" />
+                  {!soundOn && (
+                    <>
+                      {/* REC badge */}
+                      <div className="absolute top-3 left-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-semibold tracking-wide pointer-events-none">
+                        <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                        REC · Live-Kamera
+                      </div>
+                      {/* Duration */}
+                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-white text-xs font-mono pointer-events-none">
+                        {heroVideo.duration}
+                      </div>
+                    </>
+                  )}
                 </div>
-                <div className="text-left">
-                  <p className="text-white/80 text-sm font-medium">Jetzt kostenlos anrufen</p>
-                  <p className="text-white text-2xl md:text-3xl font-black tracking-tight">
-                    {company.contact.phoneDisplay}
-                  </p>
-                </div>
-              </button>
 
-              {/* Secondary CTA */}
-              <Link href="/kontakt" className="block mt-3">
-                <div className="w-full h-12 bg-white/10 text-white border border-white/20 font-semibold rounded-xl flex items-center justify-center gap-2 text-sm hover:bg-white/20 transition-colors">
-                  <Zap className="w-4 h-4 text-yellow-400" />
-                  Rückruf in 5 Minuten anfordern
-                  <ArrowRight className="w-4 h-4" />
+                {/* Caption */}
+                <div className="p-4 bg-gradient-to-b from-gray-900 to-gray-950 border-t border-white/5">
+                  <div className="flex items-center gap-2">
+                    <Camera className="w-4 h-4 text-primary flex-shrink-0" />
+                    <span className="text-white text-sm font-medium truncate">
+                      Echte Kamerabefahrung – live aus der Leitung
+                    </span>
+                  </div>
                 </div>
-              </Link>
-            </div>
-
-            {/* TRUST INDICATORS */}
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 mb-8">
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-4 h-4 md:w-5 md:h-5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <span className="text-white font-semibold text-sm md:text-base">
-                  {company.rating.displayText}
-                </span>
-                <span className="text-white/60 text-xs md:text-sm">
-                  ({company.rating.reviewCount} Bewertungen)
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-white/80">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-sm">Nürnberg • Fürth • Erlangen • Umgebung</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-amber-400" />
-                <span className="text-white/80 text-sm">In {company.urgency.responseTime} Min vor Ort</span>
               </div>
             </div>
 
