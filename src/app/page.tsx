@@ -6,6 +6,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import WhyUs from "@/components/home/WhyUs";
 import AboutUs from "@/components/home/AboutUs";
 import Testimonials from "@/components/home/Testimonials";
+import VideoShowcase from "@/components/home/VideoShowcase";
 import Gallery from "@/components/home/Gallery";
 import CTASection from "@/components/home/CTASection";
 import EmergencyGuide from "@/components/home/EmergencyGuide";
@@ -400,16 +401,19 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* 1. Hero Section - now features the camera video above the fold */}
+      {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Pricing Preview - Important for Google Ads */}
+      {/* 2. Video Showcase - directly after the hero */}
+      <VideoShowcase />
+
+      {/* 3. Pricing Preview - Important for Google Ads */}
       <PricingPreview />
 
-      {/* 3. Trust Section */}
+      {/* 4. Trust Section */}
       <TrustSection />
 
-      {/* 4. Contact Form */}
+      {/* 5. Contact Form */}
       <ContactForm />
 
       {/* 6. How It Works */}
