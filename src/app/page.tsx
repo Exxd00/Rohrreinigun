@@ -404,37 +404,37 @@ export default function Home() {
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. Pricing Preview - Important for Google Ads */}
-      <PricingPreview />
-
-      {/* 3. Trust Section */}
-      <TrustSection />
-
-      {/* 3. Contact Form */}
-      <ContactForm />
-
-      {/* 4. How It Works */}
-      <HowItWorks />
-
-      {/* 5. Why Us */}
-      <WhyUs />
-
-      {/* 5.5. Emergency Guide - Educational Content */}
-      <EmergencyGuide />
-
-      {/* 6. About Us */}
-      <AboutUs />
-
-      {/* 7. Testimonials */}
-      <Testimonials />
-
-      {/* 8. Video Showcase - Real footage from our jobs */}
+      {/* 2. Video Showcase - Real footage grabs attention early & boosts dwell time */}
       <VideoShowcase />
 
-      {/* 9. Gallery */}
+      {/* 3. Pricing Preview - Important for Google Ads */}
+      <PricingPreview />
+
+      {/* 4. Trust Section */}
+      <TrustSection />
+
+      {/* 5. Contact Form */}
+      <ContactForm />
+
+      {/* 6. How It Works */}
+      <HowItWorks />
+
+      {/* 7. Why Us */}
+      <WhyUs />
+
+      {/* 8. Emergency Guide - Educational Content */}
+      <EmergencyGuide />
+
+      {/* 9. About Us */}
+      <AboutUs />
+
+      {/* 10. Testimonials */}
+      <Testimonials />
+
+      {/* 11. Gallery */}
       <Gallery />
 
-      {/* 9. CTA Section */}
+      {/* 12. CTA Section */}
       <CTASection />
     </>
   );

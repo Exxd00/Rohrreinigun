@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Play, X, Volume2, Camera, Phone, ArrowRight, Maximize2 } from "lucide-react";
+import { X, Volume2, VolumeX, Camera, Phone, ArrowRight, Maximize2 } from "lucide-react";
 import { workVideos, company } from "@/data/company";
 import { Button } from "@/components/ui/button";
 
@@ -11,17 +11,35 @@ export default function VideoShowcase() {
   const reels = workVideos.filter((v) => !v.featured);
 
   const [lightboxId, setLightboxId] = useState<string | null>(null);
-  const [featuredPlaying, setFeaturedPlaying] = useState(false);
+  const [soundOn, setSoundOn] = useState(false);
   const featuredRef = useRef<HTMLVideoElement>(null);
 
   const activeVideo = workVideos.find((v) => v.id === lightboxId) ?? null;
 
-  const playFeatured = () => {
+  // Auto-play the featured clip (muted) once it scrolls into view — motion grabs attention
+  useEffect(() => {
     const v = featuredRef.current;
     if (!v) return;
-    v.muted = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) v.play().catch(() => {});
+          else v.pause();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(v);
+    return () => observer.disconnect();
+  }, []);
+
+  const toggleSound = () => {
+    const v = featuredRef.current;
+    if (!v) return;
+    const next = !soundOn;
+    v.muted = !next;
     v.play().catch(() => {});
-    setFeaturedPlaying(true);
+    setSoundOn(next);
   };
 
   // Escape to close lightbox + scroll lock
@@ -87,35 +105,42 @@ export default function VideoShowcase() {
                   ref={featuredRef}
                   src={featured.src}
                   poster={featured.poster}
-                  controls={featuredPlaying}
+                  muted={!soundOn}
+                  loop={!soundOn}
+                  controls={soundOn}
                   playsInline
                   preload="metadata"
                   className="w-full h-full object-cover"
-                  onEnded={() => setFeaturedPlaying(false)}
+                  onEnded={() => setSoundOn(false)}
                 />
 
-                {!featuredPlaying && (
+                {!soundOn && (
                   <button
                     type="button"
-                    onClick={playFeatured}
-                    aria-label="Video abspielen"
-                    className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/75 via-black/10 to-black/30"
+                    onClick={toggleSound}
+                    aria-label="Ton einschalten"
+                    className="group/sound absolute inset-0 flex items-end justify-center pb-5 md:pb-6 bg-gradient-to-t from-black/60 via-transparent to-black/10"
                   >
-                    <span className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-9 h-9 md:w-11 md:h-11 text-white ml-1" fill="currentColor" />
+                    <span className="flex items-center gap-2 px-5 py-3 rounded-full bg-white/95 text-gray-900 text-sm font-bold shadow-2xl group-hover/sound:scale-105 group-hover/sound:bg-white transition-all">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                      </span>
+                      <VolumeX className="w-4 h-4" />
+                      Tippen für Ton
                     </span>
                   </button>
                 )}
 
-                {!featuredPlaying && (
+                {!soundOn && (
                   <>
                     {/* REC badge */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-semibold tracking-wide">
+                    <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-semibold tracking-wide pointer-events-none">
                       <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                      REC · Kamerabefahrung
+                      REC · Live-Kamerabefahrung
                     </div>
                     {/* Duration */}
-                    <div className="absolute top-4 right-4 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-white text-xs font-mono">
+                    <div className="absolute top-4 right-4 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-sm text-white text-xs font-mono pointer-events-none">
                       {featured.duration}
                     </div>
                   </>
