@@ -1,4 +1,5 @@
 import HeroSection from "@/components/home/HeroSection";
+import ProblemProcess from "@/components/home/ProblemProcess";
 import PricingPreview from "@/components/home/PricingPreview";
 import TrustSection from "@/components/home/TrustSection";
 import ContactForm from "@/components/home/ContactForm";
@@ -401,13 +402,16 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section (the hero only) */}
       <HeroSection />
 
       {/* 2. Video Showcase - directly after the hero */}
       <VideoShowcase />
 
-      {/* 3. Pricing Preview - Important for Google Ads */}
+      {/* 3. Problem Selection + How We Work (moved out of the hero) */}
+      <ProblemProcess />
+
+      {/* 4. Pricing Preview - Important for Google Ads */}
       <PricingPreview />
 
       {/* 4. Trust Section */}
