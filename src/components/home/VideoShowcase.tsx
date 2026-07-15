@@ -5,6 +5,7 @@ import Link from "next/link";
 import { X, Volume2, VolumeX, Camera, Phone, ArrowRight, Maximize2 } from "lucide-react";
 import { workVideos, company } from "@/data/company";
 import { Button } from "@/components/ui/button";
+import YouTubeFacade from "@/components/home/YouTubeFacade";
 
 export default function VideoShowcase() {
   const featured = workVideos.find((v) => v.featured) ?? workVideos[0];
@@ -95,6 +96,50 @@ export default function VideoShowcase() {
               Keine Stockfotos. Echte Aufnahmen aus unseren Rohr- und Kanaleinsätzen in
               Mittelfranken – inklusive Live-Kamerabefahrung direkt aus der Leitung.
             </p>
+          </div>
+
+          {/* Vorher / Nachher — echte YouTube-Aufnahmen unserer Rohrreinigung */}
+          <div className="max-w-4xl mx-auto mb-12 md:mb-16">
+            {/* Side by side — also on mobile */}
+            <div className="grid grid-cols-2 gap-3 md:gap-6">
+              {/* Vorher */}
+              <div className="flex flex-col">
+                <div className="mb-2 md:mb-3 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-500/15 px-2.5 md:px-3 py-1 text-xs md:text-sm font-bold text-orange-400 ring-1 ring-orange-500/30">
+                    <span className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-orange-500 animate-pulse" />
+                    Vorher
+                  </span>
+                </div>
+                <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-white/10">
+                  <YouTubeFacade videoId="VTKZqTzQyjs" title="Rohrreinigung – Vorher" />
+                </div>
+                <h4 className="mt-2.5 md:mt-3 text-sm md:text-lg font-bold text-white">
+                  Verstopfte Leitung
+                </h4>
+                <p className="mt-1 text-xs md:text-sm text-gray-400 leading-relaxed">
+                  Dicke Ablagerungen und Schmutz verengen das Rohr – das Wasser läuft kaum noch ab.
+                </p>
+              </div>
+
+              {/* Nachher */}
+              <div className="flex flex-col">
+                <div className="mb-2 md:mb-3 flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-2.5 md:px-3 py-1 text-xs md:text-sm font-bold text-emerald-400 ring-1 ring-emerald-500/30">
+                    <span className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-emerald-500" />
+                    Nachher
+                  </span>
+                </div>
+                <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-white/10">
+                  <YouTubeFacade videoId="mmDZeTvNOJo" title="Rohrreinigung – Nachher" />
+                </div>
+                <h4 className="mt-2.5 md:mt-3 text-sm md:text-lg font-bold text-white">
+                  Saubere Leitung
+                </h4>
+                <p className="mt-1 text-xs md:text-sm text-gray-400 leading-relaxed">
+                  Nach unserer Hochdruckreinigung ist das Rohr wieder komplett frei und glatt.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Featured landscape video */}
