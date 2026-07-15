@@ -418,7 +418,7 @@ export const beforeAfterGallery = [
     id: 1,
     title: "Kanalschacht-Reinigung",
     description:
-      "Verstopfter Kanalschacht mit Fett & Ablagerungen – nach der Hochdruckreinigung wieder voll funktionsfähig.",
+      "Verstopfter Kanalschacht mit Wurzeln – nach der Reinigung wieder voll funktionsfähig.",
     category: "Kanalreinigung",
     serviceSlug: "kanalreinigung",
     beforeImage: "/work/kanalreinigung-vorher.jpg",

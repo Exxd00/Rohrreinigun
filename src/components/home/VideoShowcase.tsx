@@ -115,7 +115,7 @@ export default function VideoShowcase() {
                 Verstopfte Leitung
               </h4>
               <p className="mt-1 text-sm text-gray-400 leading-relaxed">
-                Dicke Ablagerungen und Schmutz verengen das Rohr – das Wasser läuft kaum noch ab.
+                Starke Ablagerungen und Schmutz verengen das Rohr – das Wasser läuft kaum noch ab.
               </p>
             </div>
 
@@ -134,7 +134,7 @@ export default function VideoShowcase() {
                 Saubere Leitung
               </h4>
               <p className="mt-1 text-sm text-gray-400 leading-relaxed">
-                Nach unserer Hochdruckreinigung ist das Rohr wieder komplett frei und glatt.
+                Nach unserer Reinigung ist das Rohr wieder komplett frei und glatt.
               </p>
             </div>
           </div>
