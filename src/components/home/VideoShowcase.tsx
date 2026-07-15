@@ -111,7 +111,11 @@ export default function VideoShowcase() {
                   </span>
                 </div>
                 <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-white/10">
-                  <YouTubeFacade videoId="VTKZqTzQyjs" title="Rohrreinigung – Vorher" />
+                  <YouTubeFacade
+                    videoId="VTKZqTzQyjs"
+                    title="Rohrreinigung – Vorher"
+                    aspectClass="aspect-[9/16] md:aspect-[4/3]"
+                  />
                 </div>
                 <h4 className="mt-2.5 md:mt-3 text-sm md:text-lg font-bold text-white">
                   Verstopfte Leitung
@@ -130,7 +134,11 @@ export default function VideoShowcase() {
                   </span>
                 </div>
                 <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-2xl ring-1 ring-white/10">
-                  <YouTubeFacade videoId="mmDZeTvNOJo" title="Rohrreinigung – Nachher" />
+                  <YouTubeFacade
+                    videoId="mmDZeTvNOJo"
+                    title="Rohrreinigung – Nachher"
+                    aspectClass="aspect-[9/16] md:aspect-[4/3]"
+                  />
                 </div>
                 <h4 className="mt-2.5 md:mt-3 text-sm md:text-lg font-bold text-white">
                   Saubere Leitung

@@ -5,9 +5,14 @@ import { useState, useRef, useEffect } from "react";
 interface YouTubeFacadeProps {
   videoId: string;
   title: string;
+  aspectClass?: string;
 }
 
-export default function YouTubeFacade({ videoId, title }: YouTubeFacadeProps) {
+export default function YouTubeFacade({
+  videoId,
+  title,
+  aspectClass = "aspect-[4/3]",
+}: YouTubeFacadeProps) {
   const [load, setLoad] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,7 +36,7 @@ export default function YouTubeFacade({ videoId, title }: YouTubeFacadeProps) {
   }, []);
 
   return (
-    <div ref={ref} className="relative aspect-[4/3] w-full bg-black">
+    <div ref={ref} className={`relative w-full bg-black ${aspectClass}`}>
       {load ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&rel=0&playsinline=1&modestbranding=1`}
