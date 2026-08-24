@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingButtons from "@/components/layout/FloatingButtons";
 import TrackingInit from "@/components/layout/TrackingInit";
+import ConsentBanner from "@/components/layout/ConsentBanner";
 import { company } from "@/data/company";
 
 const GA_MEASUREMENT_ID = "G-SFZFMCJXG2";
@@ -94,48 +95,68 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "@id": "https://rohrreinigung-kraft.de/#organization",
-              "name": "Rohrreinigung Kraft",
-              "description": "Professionelle Rohrreinigung & Kanalreinigung in Mittelfranken. 24/7 Notdienst.",
-              "url": "https://rohrreinigung-kraft.de",
-              "logo": "https://rohrreinigung-kraft.de/logo.png",
-              "telephone": "+4991189218682",
-              "email": "Info@Rohrreinigung-kraft.de",
-              "address": {
+              name: "Rohrreinigung Kraft",
+              description:
+                "Professionelle Rohrreinigung & Kanalreinigung in Mittelfranken. 24/7 Notdienst.",
+              url: "https://rohrreinigung-kraft.de",
+              logo: "https://rohrreinigung-kraft.de/logo.png",
+              telephone: "+4991189218682",
+              email: "Info@Rohrreinigung-kraft.de",
+              address: {
                 "@type": "PostalAddress",
-                "streetAddress": "Ehemannstr. 9",
-                "addressLocality": "Nürnberg",
-                "addressRegion": "Bayern",
-                "postalCode": "90478",
-                "addressCountry": "DE"
+                streetAddress: "Ehemannstr. 9",
+                addressLocality: "Nürnberg",
+                addressRegion: "Bayern",
+                postalCode: "90478",
+                addressCountry: "DE",
               },
-              "geo": {
+              geo: {
                 "@type": "GeoCoordinates",
-                "latitude": "49.4521",
-                "longitude": "11.0767"
+                latitude: "49.4521",
+                longitude: "11.0767",
               },
-              "openingHoursSpecification": {
+              openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
+                dayOfWeek: [
                   "Monday",
                   "Tuesday",
                   "Wednesday",
                   "Thursday",
                   "Friday",
                   "Saturday",
-                  "Sunday"
+                  "Sunday",
                 ],
-                "opens": "00:00",
-                "closes": "23:59"
+                opens: "00:00",
+                closes: "23:59",
               },
-              "taxID": "DE362340841",
-              "legalName": "Rohrreinigung Kraft"
-            })
+              taxID: "DE362340841",
+              legalName: "Rohrreinigung Kraft",
+            }),
           }}
         />
       </head>
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
+        {/* Consent Mode v2 defaults before Google tags load. */}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            var consentChoice = null;
+            try { consentChoice = localStorage.getItem('rk_nuernberg_consent'); } catch (e) {}
+            var consentValue = consentChoice === 'accepted' ? 'granted' : 'denied';
+            gtag('consent', 'default', {
+              analytics_storage: consentValue,
+              ad_storage: consentValue,
+              ad_user_data: consentValue,
+              ad_personalization: consentValue,
+              wait_for_update: 500
+            });
+            gtag('set', 'ads_data_redaction', true);
+            gtag('set', 'url_passthrough', true);
+          `}
+        </Script>
         {/* Google tag (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -152,11 +173,10 @@ export default function RootLayout({
         {/* Initialize GCLID and UTM tracking */}
         <TrackingInit />
         <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
         <FloatingButtons />
+        <ConsentBanner />
       </body>
     </html>
   );
