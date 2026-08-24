@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle, Phone, Home, Clock, MessageSquare, ArrowRight } from "lucide-react";
+import {
+  CheckCircle,
+  Phone,
+  Home,
+  Clock,
+  MessageSquare,
+  ArrowRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { company } from "@/data/company";
 import { trackThankYouPage, trackPhoneClick } from "@/lib/tracking";
@@ -18,10 +25,15 @@ export default function ThankYouPage() {
 
     if (formSubmitted === "true") {
       setIsValid(true);
-      // Track thank you page view for conversion tracking
-      trackThankYouPage();
+      const eventId =
+        sessionStorage.getItem("kraft_form_event_id") || undefined;
+      if (sessionStorage.getItem("kraft_thank_you_tracked") !== eventId) {
+        trackThankYouPage(eventId);
+        sessionStorage.setItem("kraft_thank_you_tracked", eventId || "tracked");
+      }
       // Clear the flag after successful access
       sessionStorage.removeItem("form_submitted");
+      sessionStorage.removeItem("kraft_form_event_id");
     } else {
       // Redirect to home if accessed directly
       router.replace("/");
@@ -147,13 +159,19 @@ export default function ThankYouPage() {
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-3">
               <Button asChild variant="outline" className="flex-1">
-                <Link href="/" className="flex items-center justify-center gap-2">
+                <Link
+                  href="/"
+                  className="flex items-center justify-center gap-2"
+                >
                   <Home className="w-4 h-4" />
                   Zur Startseite
                 </Link>
               </Button>
               <Button asChild className="flex-1">
-                <Link href="/leistungen" className="flex items-center justify-center gap-2">
+                <Link
+                  href="/leistungen"
+                  className="flex items-center justify-center gap-2"
+                >
                   Unsere Leistungen
                   <ArrowRight className="w-4 h-4" />
                 </Link>
