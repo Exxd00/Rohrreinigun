@@ -1,10 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, X, Clock, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import {
+  Phone,
+  X,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 import { company } from "@/data/company";
-import { trackCallIntent, trackCallConfirmed } from "@/lib/tracking";
-import { getTrackingData, getGclid } from "@/lib/gclid";
+import { trackCallIntent, trackPhoneClick } from "@/lib/tracking";
 
 interface CallConfirmModalProps {
   isOpen: boolean;
@@ -12,7 +18,11 @@ interface CallConfirmModalProps {
   source: string;
 }
 
-export default function CallConfirmModal({ isOpen, onClose, source }: CallConfirmModalProps) {
+export default function CallConfirmModal({
+  isOpen,
+  onClose,
+  source,
+}: CallConfirmModalProps) {
   const [step, setStep] = useState<"intent" | "confirm">("intent");
   const [isCallInProgress, setIsCallInProgress] = useState(false);
 
@@ -33,38 +43,9 @@ export default function CallConfirmModal({ isOpen, onClose, source }: CallConfir
     if (isCallInProgress) return;
     setIsCallInProgress(true);
 
-    // Get tracking data for Google Sheets
-    const trackingData = getTrackingData();
-    const gclid = getGclid();
-
-    // 🎯 CONVERSION: Track call confirmed
-    trackCallConfirmed(source);
-
-    // Send to Google Sheets in background (fire and forget)
-    const payload = JSON.stringify({
-      eventType: "call_confirmed",
-      source: source,
-      gclid: gclid,
-      utmSource: trackingData.source,
-      utmMedium: trackingData.medium,
-      utmCampaign: trackingData.campaign,
-      landingPage: trackingData.landingPage,
-      currentPage: trackingData.currentPage,
-      referrer: trackingData.referrer,
-      timestamp: new Date().toISOString(),
-    });
-
-    // Use sendBeacon for reliable background sending
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon("/api/call-event", payload);
-    } else {
-      fetch("/api/call-event", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: payload,
-        keepalive: true,
-      }).catch(() => {});
-    }
+    // A tel: click does not prove that the call connected. Track it only as
+    // engagement; connected Google Ads calls are imported separately.
+    trackPhoneClick(source);
 
     // IMMEDIATELY make the call - no waiting!
     window.location.href = `tel:${company.contact.phone}`;
@@ -170,15 +151,21 @@ export default function CallConfirmModal({ isOpen, onClose, source }: CallConfir
             <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-3 mb-4 text-left">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">Kostenlose Beratung</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  Kostenlose Beratung
+                </span>
               </div>
               <div className="flex items-center gap-2 mb-2">
                 <Clock className="w-4 h-4 text-primary shrink-0" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">Meist 30-60 Min vor Ort</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  Meist 30-60 Min vor Ort
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 text-orange-500 shrink-0" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">24/7 Notdienst</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  24/7 Notdienst
+                </span>
               </div>
             </div>
 
