@@ -3,14 +3,33 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Send, Phone, Clock, Users, Loader2, CheckCircle, Zap, Upload, X, Camera } from "lucide-react";
+import {
+  Send,
+  Phone,
+  Clock,
+  Users,
+  Loader2,
+  CheckCircle,
+  Zap,
+  Upload,
+  X,
+  Camera,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { company } from "@/data/company";
-import { compressImage, formatFileSize, type CompressedImage } from "@/lib/imageCompression";
-import { trackFormConfirmed, trackPhoneClick, trackCTAClick, getCompleteTrackingData } from "@/lib/tracking";
+import {
+  compressImage,
+  formatFileSize,
+  type CompressedImage,
+} from "@/lib/imageCompression";
+import {
+  trackPhoneClick,
+  trackCTAClick,
+  getCompleteTrackingData,
+} from "@/lib/tracking";
 
 interface FormData {
   name: string;
@@ -36,36 +55,46 @@ export default function ContactForm() {
   const [isCompressing, setIsCompressing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [website, setWebsite] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (files.length === 0) return;
+  const handleImageUpload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = Array.from(e.target.files || []);
+      if (files.length === 0) return;
 
-    const remainingSlots = MAX_IMAGES - images.length;
-    const filesToProcess = files.slice(0, remainingSlots);
+      const remainingSlots = MAX_IMAGES - images.length;
+      const filesToProcess = files.slice(0, remainingSlots);
 
-    if (filesToProcess.length === 0) return;
+      if (filesToProcess.length === 0) return;
 
-    setIsCompressing(true);
+      setIsCompressing(true);
 
-    try {
-      const compressedImages: CompressedImage[] = [];
-      for (const file of filesToProcess) {
-        const compressed = await compressImage(file);
-        compressedImages.push(compressed);
+      try {
+        const compressedImages: CompressedImage[] = [];
+        for (const file of filesToProcess) {
+          const compressed = await compressImage(file);
+          compressedImages.push(compressed);
+        }
+        setImages((prev) =>
+          [...prev, ...compressedImages].slice(0, MAX_IMAGES),
+        );
+      } catch (error) {
+        console.error("Error compressing images:", error);
+      } finally {
+        setIsCompressing(false);
+        e.target.value = "";
       }
-      setImages(prev => [...prev, ...compressedImages].slice(0, MAX_IMAGES));
-    } catch (error) {
-      console.error("Error compressing images:", error);
-    } finally {
-      setIsCompressing(false);
-      e.target.value = "";
-    }
-  }, [images.length]);
+    },
+    [images.length],
+  );
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
@@ -83,14 +112,7 @@ export default function ContactForm() {
 
     // Get complete tracking data including GCLID, source, etc.
     const trackingData = getCompleteTrackingData();
-
-    // 🎯 CONVERSION: Track form confirmed
-    trackFormConfirmed({
-      service: formData.service,
-      city: formData.city,
-      hasImages: images.length > 0,
-      imageCount: images.length,
-    });
+    const eventId = crypto.randomUUID();
 
     try {
       const response = await fetch("/api/contact", {
@@ -101,15 +123,20 @@ export default function ContactForm() {
         body: JSON.stringify({
           ...formData,
           email: "",
-          images: images.map(img => img.dataUrl),
+          images: images.map((img) => img.dataUrl),
           // Include tracking data for Google Sheets
           gclid: trackingData.gclid,
+          gbraid: trackingData.gbraid,
+          wbraid: trackingData.wbraid,
+          eventId,
+          website,
           source: trackingData.source,
           medium: trackingData.medium,
           campaign: trackingData.campaign,
           landingPage: trackingData.landingPage,
           currentPage: trackingData.currentPage,
           referrer: trackingData.referrer,
+          requestType: "contact",
         }),
       });
 
@@ -117,15 +144,20 @@ export default function ContactForm() {
 
       if (response.ok) {
         sessionStorage.setItem("form_submitted", "true");
+        sessionStorage.setItem("kraft_form_event_id", eventId);
         router.push("/thank-you");
       } else {
         console.error("Form submission failed:", result);
         const errorMsg = result.details || result.error || "Unbekannter Fehler";
-        alert(`Fehler: ${errorMsg}\n\nBitte rufen Sie uns direkt an: ${company.contact.phoneDisplay}`);
+        alert(
+          `Fehler: ${errorMsg}\n\nBitte rufen Sie uns direkt an: ${company.contact.phoneDisplay}`,
+        );
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert(`Verbindungsfehler. Bitte rufen Sie uns an: ${company.contact.phoneDisplay}`);
+      alert(
+        `Verbindungsfehler. Bitte rufen Sie uns an: ${company.contact.phoneDisplay}`,
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -148,7 +180,10 @@ export default function ContactForm() {
   ];
 
   return (
-    <section id="kontakt" className="py-6 md:py-16 bg-gray-50 dark:bg-gray-800/50">
+    <section
+      id="kontakt"
+      className="py-6 md:py-16 bg-gray-50 dark:bg-gray-800/50"
+    >
       <div className="container mx-auto px-2 md:px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-3 lg:gap-8">
@@ -179,9 +214,24 @@ export default function ContactForm() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input
+                    id="contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(event) => setWebsite(event.target.value)}
+                  />
+                </div>
                 {/* Service Selection */}
                 <div className="space-y-1">
-                  <Label htmlFor="service" className="text-sm md:text-base font-medium">
+                  <Label
+                    htmlFor="service"
+                    className="text-sm md:text-base font-medium"
+                  >
                     Was ist das Problem? *
                   </Label>
                   <select
@@ -203,7 +253,12 @@ export default function ContactForm() {
 
                 {/* Name Field */}
                 <div className="space-y-1">
-                  <Label htmlFor="name" className="text-sm md:text-base font-medium">Name *</Label>
+                  <Label
+                    htmlFor="name"
+                    className="text-sm md:text-base font-medium"
+                  >
+                    Name *
+                  </Label>
                   <Input
                     id="name"
                     name="name"
@@ -218,7 +273,12 @@ export default function ContactForm() {
                 {/* Phone & City - Grid */}
                 <div className="grid grid-cols-2 gap-2 md:gap-3">
                   <div className="space-y-1">
-                    <Label htmlFor="phone" className="text-sm md:text-base font-medium">Telefon *</Label>
+                    <Label
+                      htmlFor="phone"
+                      className="text-sm md:text-base font-medium"
+                    >
+                      Telefon *
+                    </Label>
                     <Input
                       id="phone"
                       name="phone"
@@ -231,7 +291,12 @@ export default function ContactForm() {
                     />
                   </div>
                   <div className="space-y-1">
-                    <Label htmlFor="city" className="text-sm md:text-base font-medium">Ort *</Label>
+                    <Label
+                      htmlFor="city"
+                      className="text-sm md:text-base font-medium"
+                    >
+                      Ort *
+                    </Label>
                     <Input
                       id="city"
                       name="city"
@@ -246,8 +311,14 @@ export default function ContactForm() {
 
                 {/* Problem Description */}
                 <div className="space-y-1">
-                  <Label htmlFor="message" className="text-sm md:text-base font-medium">
-                    Beschreibung <span className="text-gray-400 text-xs md:text-sm">(optional)</span>
+                  <Label
+                    htmlFor="message"
+                    className="text-sm md:text-base font-medium"
+                  >
+                    Beschreibung{" "}
+                    <span className="text-gray-400 text-xs md:text-sm">
+                      (optional)
+                    </span>
                   </Label>
                   <Textarea
                     id="message"
@@ -273,8 +344,8 @@ export default function ContactForm() {
                         onClick={() => setWantsToUpload(true)}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                           wantsToUpload
-                            ? 'bg-primary text-white'
-                            : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                            ? "bg-primary text-white"
+                            : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
                         }`}
                       >
                         Ja
@@ -287,8 +358,8 @@ export default function ContactForm() {
                         }}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
                           !wantsToUpload
-                            ? 'bg-gray-600 text-white'
-                            : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
+                            ? "bg-gray-600 text-white"
+                            : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
                         }`}
                       >
                         Nein
@@ -307,11 +378,13 @@ export default function ContactForm() {
                           onChange={handleImageUpload}
                           className="hidden"
                           id="image-upload"
-                          disabled={images.length >= MAX_IMAGES || isCompressing}
+                          disabled={
+                            images.length >= MAX_IMAGES || isCompressing
+                          }
                         />
                         <label
                           htmlFor="image-upload"
-                          className={`cursor-pointer flex flex-col items-center ${images.length >= MAX_IMAGES ? 'opacity-50 cursor-not-allowed' : ''}`}
+                          className={`cursor-pointer flex flex-col items-center ${images.length >= MAX_IMAGES ? "opacity-50 cursor-not-allowed" : ""}`}
                         >
                           {isCompressing ? (
                             <Loader2 className="w-6 h-6 md:w-8 md:h-8 text-primary animate-spin mb-2" />
@@ -319,7 +392,9 @@ export default function ContactForm() {
                             <Upload className="w-6 h-6 md:w-8 md:h-8 text-gray-400 mb-2" />
                           )}
                           <span className="text-sm md:text-base text-gray-600 dark:text-gray-400">
-                            {isCompressing ? 'Komprimieren...' : 'Klicken zum Hochladen'}
+                            {isCompressing
+                              ? "Komprimieren..."
+                              : "Klicken zum Hochladen"}
                           </span>
                           <span className="text-xs md:text-sm text-gray-500 mt-1">
                             Max. {MAX_IMAGES} Bilder
@@ -331,7 +406,10 @@ export default function ContactForm() {
                       {images.length > 0 && (
                         <div className="grid grid-cols-3 gap-2 md:gap-3">
                           {images.map((image, index) => (
-                            <div key={index} className="relative group aspect-square">
+                            <div
+                              key={index}
+                              className="relative group aspect-square"
+                            >
                               <img
                                 src={image.dataUrl}
                                 alt={`Upload ${index + 1}`}
@@ -366,9 +444,15 @@ export default function ContactForm() {
                     className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
                     required
                   />
-                  <label htmlFor="privacy" className="text-xs md:text-sm text-gray-600 dark:text-gray-400 cursor-pointer leading-relaxed">
+                  <label
+                    htmlFor="privacy"
+                    className="text-xs md:text-sm text-gray-600 dark:text-gray-400 cursor-pointer leading-relaxed"
+                  >
                     Ich akzeptiere die{" "}
-                    <Link href="/datenschutz" className="text-primary underline hover:no-underline">
+                    <Link
+                      href="/datenschutz"
+                      className="text-primary underline hover:no-underline"
+                    >
                       Datenschutzerklärung
                     </Link>{" "}
                     und bin mit der Verarbeitung meiner Daten einverstanden. *
@@ -379,7 +463,9 @@ export default function ContactForm() {
                   type="submit"
                   disabled={isSubmitting || isCompressing || !privacyAccepted}
                   className="w-full h-12 md:h-14 gradient-primary text-white text-base md:text-lg font-semibold rounded-lg md:rounded-xl btn-shimmer disabled:opacity-50"
-                  onClick={() => trackCTAClick("contact_form_submit", "contact_form")}
+                  onClick={() =>
+                    trackCTAClick("contact_form_submit", "contact_form")
+                  }
                 >
                   {isSubmitting ? (
                     <span className="flex items-center gap-2">
@@ -402,7 +488,9 @@ export default function ContactForm() {
               <div className="bg-gradient-to-br from-primary to-accent rounded-lg md:rounded-2xl p-4 md:p-5 text-white">
                 <div className="flex items-center gap-2 mb-2 md:mb-3">
                   <Clock className="w-5 h-5" />
-                  <span className="text-base md:text-lg font-bold">Anfahrt in {company.urgency.responseTime} Min</span>
+                  <span className="text-base md:text-lg font-bold">
+                    Anfahrt in {company.urgency.responseTime} Min
+                  </span>
                 </div>
                 <a
                   href={`tel:${company.contact.phone}`}
@@ -413,8 +501,12 @@ export default function ContactForm() {
                     <Phone className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                   <div>
-                    <p className="text-xs md:text-sm opacity-80">Jetzt anrufen</p>
-                    <p className="text-lg md:text-xl font-bold">{company.contact.phoneDisplay}</p>
+                    <p className="text-xs md:text-sm opacity-80">
+                      Jetzt anrufen
+                    </p>
+                    <p className="text-lg md:text-xl font-bold">
+                      {company.contact.phoneDisplay}
+                    </p>
                   </div>
                 </a>
                 <p className="text-xs md:text-sm opacity-80 text-center">
@@ -433,7 +525,10 @@ export default function ContactForm() {
                 <div className="space-y-2 mb-3">
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <CheckCircle className="w-4 h-4 text-primary shrink-0" />
-                    <span>Diagnose vor Ort <strong className="text-primary">kostenlos</strong></span>
+                    <span>
+                      Diagnose vor Ort{" "}
+                      <strong className="text-primary">kostenlos</strong>
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <CheckCircle className="w-4 h-4 text-primary shrink-0" />
@@ -441,18 +536,28 @@ export default function ContactForm() {
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                     <CheckCircle className="w-4 h-4 text-primary shrink-0" />
-                    <span>Festpreis <strong>vor</strong> Arbeitsbeginn</span>
+                    <span>
+                      Festpreis <strong>vor</strong> Arbeitsbeginn
+                    </span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-2 md:p-3 text-center">
-                    <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Rohrreinigung</p>
-                    <p className="font-bold text-gray-900 dark:text-white text-base md:text-lg">ab {company.pricing.services.rohrreinigung.from}€</p>
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                      Rohrreinigung
+                    </p>
+                    <p className="font-bold text-gray-900 dark:text-white text-base md:text-lg">
+                      ab {company.pricing.services.rohrreinigung.from}€
+                    </p>
                   </div>
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-2 md:p-3 text-center">
-                    <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Toilette</p>
-                    <p className="font-bold text-gray-900 dark:text-white text-base md:text-lg">ab {company.pricing.services.toiletteVerstopft.from}€</p>
+                    <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                      Toilette
+                    </p>
+                    <p className="font-bold text-gray-900 dark:text-white text-base md:text-lg">
+                      ab {company.pricing.services.toiletteVerstopft.from}€
+                    </p>
                   </div>
                 </div>
               </div>
