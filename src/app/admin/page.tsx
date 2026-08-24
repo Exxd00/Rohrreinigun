@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Download, Image as ImageIcon, FileText, Palette, Lock, Eye, EyeOff, Map, Upload, ExternalLink } from "lucide-react";
+import { Download, Image as ImageIcon, FileText, Palette, Lock, Eye, EyeOff, Map, Upload, ExternalLink, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { gallery } from "@/data/company";
-
-const ADMIN_PASSWORD = "Leavemealone2003+";
+import { useAdminAuth } from "@/lib/useAdminAuth";
 
 const brandAssets = [
   { name: "Logo PNG", description: "Standard Logo", url: "/logo.png", type: "PNG" },
@@ -35,24 +34,15 @@ const sitemapLinks = [
 ];
 
 export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, isCheckingAuth, login, logout } = useAdminAuth();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    // Check if already authenticated in this session
-    const auth = sessionStorage.getItem("admin_auth");
-    if (auth === "true") {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("admin_auth", "true");
+    if (await login(password)) {
+      setPassword("");
       setError("");
     } else {
       setError("Falsches Passwort");
@@ -69,6 +59,14 @@ export default function AdminPage() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
   };
+
+  if (isCheckingAuth) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-gray-900">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </main>
+    );
+  }
 
   // Login Screen
   if (!isAuthenticated) {
@@ -136,10 +134,7 @@ export default function AdminPage() {
             </div>
             <Button
               variant="outline"
-              onClick={() => {
-                sessionStorage.removeItem("admin_auth");
-                setIsAuthenticated(false);
-              }}
+              onClick={() => void logout()}
             >
               Abmelden
             </Button>

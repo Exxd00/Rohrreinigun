@@ -2,11 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 import { writeFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
+import { isAdminRequestAuthorized } from "@/lib/admin-auth";
 
 // Check if running on Vercel (production) or locally
 const isVercel = process.env.VERCEL === "1" || process.env.VERCEL_ENV !== undefined;
 
 export async function POST(request: NextRequest) {
+  if (!isAdminRequestAuthorized(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File;

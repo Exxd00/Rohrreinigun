@@ -9,6 +9,7 @@ import {
   microsToCurrency,
   GoogleAdsConfig,
 } from "@/lib/google-ads";
+import { isAdminRequestAuthorized } from "@/lib/admin-auth";
 
 function getConfig(): GoogleAdsConfig {
   return {
@@ -63,6 +64,10 @@ function getDateRange(searchParams: URLSearchParams): { startDate: string; endDa
 }
 
 export async function GET(request: NextRequest) {
+  if (!isAdminRequestAuthorized(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const searchParams = request.nextUrl.searchParams;
   const reportType = searchParams.get("type") || "performance";
   const format = searchParams.get("format") || "json";
