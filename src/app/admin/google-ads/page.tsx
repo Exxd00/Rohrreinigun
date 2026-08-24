@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Lock, Eye, EyeOff, Download, Loader2, Phone, FileText, TrendingUp, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-const ADMIN_PASSWORD = "Leavemealone2003+";
+import { useAdminAuth } from "@/lib/useAdminAuth";
 
 interface ReportData {
   campaigns?: Array<{
@@ -28,11 +27,10 @@ interface ReportData {
 
 export default function GoogleAdsPage() {
   // Auth state
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, isCheckingAuth, login, logout } = useAdminAuth();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState("");
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   // Report state
   const [startDate, setStartDate] = useState(() => {
@@ -45,19 +43,10 @@ export default function GoogleAdsPage() {
   const [reportData, setReportData] = useState<ReportData | null>(null);
   const [reportType, setReportType] = useState<string>("performance");
 
-  useEffect(() => {
-    const authStatus = sessionStorage.getItem("gads_auth");
-    if (authStatus === "authenticated") {
-      setIsAuthenticated(true);
-    }
-    setIsCheckingAuth(false);
-  }, []);
-
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("gads_auth", "authenticated");
+    if (await login(password)) {
+      setPassword("");
       setAuthError("");
     } else {
       setAuthError("كلمة المرور غير صحيحة");
@@ -156,10 +145,7 @@ export default function GoogleAdsPage() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => {
-              sessionStorage.removeItem("gads_auth");
-              setIsAuthenticated(false);
-            }}
+            onClick={() => void logout()}
           >
             خروج
           </Button>
