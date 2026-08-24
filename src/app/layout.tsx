@@ -53,6 +53,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://rohrreinigung-kraft.de",
   },
+  verification: {
+    google: "Rb-1R7PT7LPYi2K7kWjNX0b-FQALvyLymxsy62dN1jk",
+  },
 };
 
 // Script to prevent theme flash - DEFAULT TO LIGHT MODE
