@@ -17,12 +17,17 @@ interface ContactFormData {
   images?: string[]; // base64 images
   // Tracking data
   gclid?: string | null;
+  gbraid?: string | null;
+  wbraid?: string | null;
+  eventId?: string;
+  website?: string;
   source?: string;
   medium?: string;
   campaign?: string;
   landingPage?: string;
   currentPage?: string;
   referrer?: string;
+  requestType?: "contact";
 }
 
 interface ImageUploadResult {
@@ -32,7 +37,10 @@ interface ImageUploadResult {
   errors: string[];
 }
 
-async function uploadImageToImgBB(base64Image: string, index: number): Promise<{ url: string | null; error: string | null }> {
+async function uploadImageToImgBB(
+  base64Image: string,
+  index: number,
+): Promise<{ url: string | null; error: string | null }> {
   if (!IMGBB_API_KEY) {
     const error = `[Image ${index + 1}] IMGBB_API_KEY is not configured`;
     console.error(error);
@@ -43,8 +51,10 @@ async function uploadImageToImgBB(base64Image: string, index: number): Promise<{
     // Remove data URL prefix if present
     const base64Data = base64Image.replace(/^data:image\/\w+;base64,/, "");
 
-    const sizeKB = Math.round(base64Data.length * 0.75 / 1024);
-    console.log(`[Image ${index + 1}] Uploading to ImgBB... (size: ~${sizeKB}KB)`);
+    const sizeKB = Math.round((base64Data.length * 0.75) / 1024);
+    console.log(
+      `[Image ${index + 1}] Uploading to ImgBB... (size: ~${sizeKB}KB)`,
+    );
 
     // Use URLSearchParams for more reliable upload
     const params = new URLSearchParams();
@@ -96,9 +106,11 @@ async function uploadAllImages(images: string[]): Promise<ImageUploadResult> {
     }
   }
 
-  console.log(`[Images] Upload complete: ${result.uploadedUrls.length}/${result.totalProvided} successful`);
+  console.log(
+    `[Images] Upload complete: ${result.uploadedUrls.length}/${result.totalProvided} successful`,
+  );
   if (result.errors.length > 0) {
-    console.log(`[Images] Errors: ${result.errors.join(', ')}`);
+    console.log(`[Images] Errors: ${result.errors.join(", ")}`);
   }
 
   return result;
@@ -115,7 +127,10 @@ function formatDate(): string {
   });
 }
 
-async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageUploadResult): Promise<boolean> {
+async function sendEmailViaResend(
+  formData: ContactFormData,
+  imageResult: ImageUploadResult,
+): Promise<boolean> {
   if (!RESEND_API_KEY) {
     console.error("RESEND_API_KEY not configured");
     return false;
@@ -124,7 +139,13 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
   console.log("=== EMAIL CONFIG ===");
   console.log("FROM:", RESEND_FROM_EMAIL);
   console.log("TO:", RECIPIENT_EMAIL);
-  console.log("Images:", imageResult.uploadedUrls.length, "uploaded,", imageResult.failedCount, "failed");
+  console.log(
+    "Images:",
+    imageResult.uploadedUrls.length,
+    "uploaded,",
+    imageResult.failedCount,
+    "failed",
+  );
   console.log("====================");
 
   const emailHtml = `
@@ -210,22 +231,30 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
               </div>
 
               <!-- Message -->
-              ${formData.message ? `
+              ${
+                formData.message
+                  ? `
               <div style="background-color: #f0f9ff; border-radius: 14px; padding: 14px; margin-bottom: 16px; border-left: 3px solid #3b82f6;">
                 <span style="color: #64748b; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">💬 Nachricht</span>
                 <p style="color: #334155; font-size: 14px; line-height: 1.5; margin: 0; white-space: pre-wrap;">${formData.message}</p>
               </div>
-              ` : ''}
+              `
+                  : ""
+              }
 
               <!-- Images -->
-              ${imageResult.uploadedUrls.length > 0 ? `
+              ${
+                imageResult.uploadedUrls.length > 0
+                  ? `
               <div style="background-color: #f8fafc; border-radius: 14px; padding: 14px; margin-bottom: 16px;">
-                <span style="color: #64748b; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px;">📷 ${imageResult.uploadedUrls.length} Bild${imageResult.uploadedUrls.length > 1 ? 'er' : ''}</span>
+                <span style="color: #64748b; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 10px;">📷 ${imageResult.uploadedUrls.length} Bild${imageResult.uploadedUrls.length > 1 ? "er" : ""}</span>
                 <div>
-                  ${imageResult.uploadedUrls.map((url, i) => `<a href="${url}" target="_blank" style="display: inline-block; margin: 3px;"><img src="${url}" alt="Bild ${i + 1}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px; border: 2px solid #e2e8f0;" /></a>`).join('')}
+                  ${imageResult.uploadedUrls.map((url, i) => `<a href="${url}" target="_blank" style="display: inline-block; margin: 3px;"><img src="${url}" alt="Bild ${i + 1}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px; border: 2px solid #e2e8f0;" /></a>`).join("")}
                 </div>
               </div>
-              ` : ''}
+              `
+                  : ""
+              }
 
               <!-- Action Button -->
               <table width="100%" cellpadding="0" cellspacing="0">
@@ -259,7 +288,7 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${RESEND_API_KEY}`,
+        Authorization: `Bearer ${RESEND_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -284,14 +313,22 @@ async function sendEmailViaResend(formData: ContactFormData, imageResult: ImageU
   }
 }
 
-async function sendToGoogleSheets(formData: ContactFormData, imageCount: number): Promise<{ success: boolean; error?: string }> {
+async function sendToGoogleSheets(
+  formData: ContactFormData,
+  imageCount: number,
+): Promise<{ success: boolean; error?: string }> {
   if (!GOOGLE_SHEETS_WEBHOOK_URL) {
-    console.log("[Google Sheets] GOOGLE_SHEETS_WEBHOOK_URL not configured - skipping");
+    console.log(
+      "[Google Sheets] GOOGLE_SHEETS_WEBHOOK_URL not configured - skipping",
+    );
     return { success: true }; // Don't fail if not configured
   }
 
   console.log("[Google Sheets] Sending data to webhook...");
-  console.log("[Google Sheets] Webhook URL:", GOOGLE_SHEETS_WEBHOOK_URL.substring(0, 50) + "...");
+  console.log(
+    "[Google Sheets] Webhook URL:",
+    GOOGLE_SHEETS_WEBHOOK_URL.substring(0, 50) + "...",
+  );
 
   try {
     // Build source info based on tracking data
@@ -328,6 +365,10 @@ async function sendToGoogleSheets(formData: ContactFormData, imageCount: number)
       referrer: formData.referrer || "direct",
       // Extended tracking data (optional for Google Sheets)
       gclid: formData.gclid || null,
+      gbraid: formData.gbraid || null,
+      wbraid: formData.wbraid || null,
+      eventId: formData.eventId || null,
+      sourceSite: "rohrreinigung-kraft.de",
       medium: formData.medium || null,
       campaign: formData.campaign || null,
       landingPage: formData.landingPage || null,
@@ -368,11 +409,24 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const formData: ContactFormData = body;
 
+    // Quietly accept automated submissions caught by the honeypot field.
+    if (formData.website?.trim()) {
+      return NextResponse.json({ success: true });
+    }
+
     // Validate required fields
-    if (!formData.name || !formData.phone || !formData.city || !formData.service) {
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.city ||
+      !formData.service
+    ) {
       return NextResponse.json(
-        { error: "Pflichtfelder fehlen", details: "Name, Telefon, Ort und Service sind erforderlich" },
-        { status: 400 }
+        {
+          error: "Pflichtfelder fehlen",
+          details: "Name, Telefon, Ort und Service sind erforderlich",
+        },
+        { status: 400 },
       );
     }
 
@@ -380,16 +434,27 @@ export async function POST(request: NextRequest) {
     if (!RESEND_API_KEY) {
       console.error("RESEND_API_KEY is not configured");
       return NextResponse.json(
-        { error: "Server-Konfigurationsfehler", details: "RESEND_API_KEY fehlt" },
-        { status: 500 }
+        {
+          error: "Server-Konfigurationsfehler",
+          details: "RESEND_API_KEY fehlt",
+        },
+        { status: 500 },
       );
     }
 
     // Log tracking data for debugging
     if (formData.gclid) {
-      console.log("[Contact Form] Lead from Google Ads - GCLID:", formData.gclid);
+      console.log(
+        "[Contact Form] Lead from Google Ads - GCLID:",
+        formData.gclid,
+      );
     }
-    console.log("[Contact Form] Source:", formData.source || "unknown", "| Medium:", formData.medium || "unknown");
+    console.log(
+      "[Contact Form] Source:",
+      formData.source || "unknown",
+      "| Medium:",
+      formData.medium || "unknown",
+    );
 
     // Upload images to ImgBB if provided
     let imageResult: ImageUploadResult = {
@@ -408,15 +473,19 @@ export async function POST(request: NextRequest) {
     const emailSent = await sendEmailViaResend(formData, imageResult);
 
     // Send to Google Sheets (with tracking data)
-    const sheetsResult = await sendToGoogleSheets(formData, imageResult.uploadedUrls.length);
+    const sheetsResult = await sendToGoogleSheets(
+      formData,
+      imageResult.uploadedUrls.length,
+    );
 
     if (!emailSent) {
       return NextResponse.json(
         {
           error: "E-Mail konnte nicht gesendet werden",
-          details: "Resend API Fehler. Mögliche Ursachen: 1) Domain nicht verifiziert bei Resend 2) RECIPIENT_EMAIL muss die verifizierte Resend E-Mail sein bei Nutzung von onboarding@resend.dev"
+          details:
+            "Resend API Fehler. Mögliche Ursachen: 1) Domain nicht verifiziert bei Resend 2) RECIPIENT_EMAIL muss die verifizierte Resend E-Mail sein bei Nutzung von onboarding@resend.dev",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -439,7 +508,7 @@ export async function POST(request: NextRequest) {
     console.error("Error processing contact form:", error);
     return NextResponse.json(
       { error: "Ein Fehler ist aufgetreten", details: String(error) },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
