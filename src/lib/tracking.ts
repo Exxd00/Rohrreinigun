@@ -74,11 +74,12 @@ const postDirectCallClickToSheets = (source: string) => {
 };
 
 // Basic engagement event for the final button in the floating call dialog.
-// It is intentionally not a key event and has no Google Ads send_to target.
+// It is intentionally not a key event and is routed only to GA4.
 export const trackDirectCallClick = (source: string) => {
   if (typeof window === "undefined") return;
 
   window.gtag?.("event", "direct_call_click", {
+    send_to: "G-SFZFMCJXG2",
     event_category: "engagement",
     event_label: source,
     interaction_type: "direct_call",
