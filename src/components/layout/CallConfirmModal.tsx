@@ -10,7 +10,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { company } from "@/data/company";
-import { trackCallIntent, trackPhoneClick } from "@/lib/tracking";
+import { trackCallIntent, trackDirectCallClick } from "@/lib/tracking";
 
 interface CallConfirmModalProps {
   isOpen: boolean;
@@ -45,7 +45,7 @@ export default function CallConfirmModal({
 
     // A tel: click does not prove that the call connected. Track it only as
     // engagement; connected Google Ads calls are imported separately.
-    trackPhoneClick(source);
+    trackDirectCallClick(source);
 
     // IMMEDIATELY make the call - no waiting!
     window.location.href = `tel:${company.contact.phone}`;
@@ -183,7 +183,7 @@ export default function CallConfirmModal({
               ) : (
                 <>
                   <Phone className="w-5 h-5" />
-                  Jetzt anrufen
+                  Jetzt direkt anrufen
                 </>
               )}
             </button>
