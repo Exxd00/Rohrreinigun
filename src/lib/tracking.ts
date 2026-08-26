@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-type TrackingEvent = "nuernberg_phone_click" | "kraft_thank_you";
+type TrackingEvent = "kraft_thank_you";
 
 const trackEvent = (
   eventName: TrackingEvent,
@@ -35,16 +35,64 @@ const trackEvent = (
   }
 };
 
-// A click on a tel: link is an engagement signal, not proof that a call was
-// connected. Keep this event secondary in GA4/Google Ads.
-export const trackPhoneClick = (source: string) => {
-  trackEvent("nuernberg_phone_click", {
-    event_label: source,
-    lead_type: "phone_click",
-    contact_method: "phone",
-    has_gclid: !!getGclid(),
+const postDirectCallClickToSheets = (source: string) => {
+  if (typeof window === "undefined") return;
+
+  const tracking = getTrackingData();
+  const body = JSON.stringify({
+    eventType: "direct_call_click",
+    eventId: crypto.randomUUID(),
+    source,
+    utmSource: tracking.source,
+    utmMedium: tracking.medium,
+    utmCampaign: tracking.campaign,
+    landingPage: tracking.landingPage,
+    currentPage: tracking.currentPage,
+    referrer: tracking.referrer,
+  });
+
+  if (
+    typeof navigator.sendBeacon === "function" &&
+    navigator.sendBeacon(
+      "/api/call-event",
+      new Blob([body], { type: "application/json" }),
+    )
+  ) {
+    return;
+  }
+
+  void fetch("/api/call-event", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+    keepalive: true,
+  }).catch((error) => {
+    if (process.env.NODE_ENV === "development") {
+      console.error("[Sheets] direct_call_click", error);
+    }
   });
 };
+
+// Basic engagement event for the final button in the floating call dialog.
+// It is intentionally not a key event and has no Google Ads send_to target.
+export const trackDirectCallClick = (source: string) => {
+  if (typeof window === "undefined") return;
+
+  window.gtag?.("event", "direct_call_click", {
+    event_category: "engagement",
+    event_label: source,
+    interaction_type: "direct_call",
+    interaction_location: "floating_call_modal",
+    contact_method: "phone",
+    site: "nuernberg",
+  });
+
+  postDirectCallClickToSheets(source);
+};
+
+// Compatibility for existing imports. The final modal button still produces
+// exactly one GA4 event.
+export const trackPhoneClick = trackDirectCallClick;
 
 // Emitted only after /api/contact succeeds and the guarded thank-you page is
 // reached. This is the reliable website-form lead event.
@@ -61,7 +109,7 @@ export const trackThankYouPage = (eventId?: string) => {
 
 // Compatibility exports for existing UI imports. They intentionally do not
 // create additional GA4 conversions, preventing duplicate or false leads.
-export const trackCallConfirmed = trackPhoneClick;
+export const trackCallConfirmed = trackDirectCallClick;
 export const trackCallIntent = (_source: string) => {};
 export const trackEmailIntent = (_source: string) => {};
 export const trackEmailConfirmed = (_source: string) => {};
