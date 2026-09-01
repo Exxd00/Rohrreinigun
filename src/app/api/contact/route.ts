@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { postCustomerEventToSheet } from "@/lib/customer-events-sheet";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
@@ -290,6 +291,9 @@ async function sendEmailViaResend(
       headers: {
         Authorization: `Bearer ${RESEND_API_KEY}`,
         "Content-Type": "application/json",
+        ...(formData.eventId
+          ? { "Idempotency-Key": `rrk-${formData.eventId}` }
+          : {}),
       },
       body: JSON.stringify({
         from: RESEND_FROM_EMAIL,
@@ -317,101 +321,58 @@ async function sendToGoogleSheets(
   formData: ContactFormData,
   imageCount: number,
 ): Promise<{ success: boolean; error?: string }> {
-  if (!GOOGLE_SHEETS_WEBHOOK_URL) {
-    console.log(
-      "[Google Sheets] GOOGLE_SHEETS_WEBHOOK_URL not configured - skipping",
-    );
-    return { success: true }; // Don't fail if not configured
+  let sourceInfo = "Website";
+  if (formData.gclid) {
+    sourceInfo = "Google Ads";
+  } else if (formData.source) {
+    sourceInfo = formData.source;
+    if (formData.medium) sourceInfo += ` / ${formData.medium}`;
+  } else if (formData.referrer) {
+    if (formData.referrer.includes("google")) {
+      sourceInfo = "Google (Organic)";
+    } else if (formData.referrer.includes("facebook")) {
+      sourceInfo = "Facebook";
+    } else if (formData.referrer !== "direct") {
+      sourceInfo = `Referral: ${new URL(formData.referrer).hostname}`;
+    }
   }
 
-  console.log("[Google Sheets] Sending data to webhook...");
-  console.log(
-    "[Google Sheets] Webhook URL:",
-    GOOGLE_SHEETS_WEBHOOK_URL.substring(0, 50) + "...",
-  );
-
-  try {
-    // Build source info based on tracking data
-    let sourceInfo = "Website";
-    if (formData.gclid) {
-      sourceInfo = "Google Ads";
-    } else if (formData.source) {
-      sourceInfo = formData.source;
-      if (formData.medium) {
-        sourceInfo += ` / ${formData.medium}`;
-      }
-    } else if (formData.referrer) {
-      if (formData.referrer.includes("google")) {
-        sourceInfo = "Google (Organic)";
-      } else if (formData.referrer.includes("facebook")) {
-        sourceInfo = "Facebook";
-      } else if (formData.referrer !== "direct" && formData.referrer !== "") {
-        sourceInfo = `Referral: ${new URL(formData.referrer).hostname}`;
-      }
-    }
-
-    // Payload matching the Google Sheets script expected format
-    const payload = {
-      timestamp: new Date().toISOString(),
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email || "",
-      city: formData.city,
-      service: formData.service,
-      message: formData.message || "",
-      // Additional tracking fields for Google Sheets
-      images: imageCount,
-      source: sourceInfo,
-      referrer: formData.referrer || "direct",
-      // Extended tracking data (optional for Google Sheets)
-      gclid: formData.gclid || null,
-      gbraid: formData.gbraid || null,
-      wbraid: formData.wbraid || null,
-      eventId: formData.eventId || null,
-      sourceSite: "rohrreinigung-kraft.de",
-      medium: formData.medium || null,
-      campaign: formData.campaign || null,
-      landingPage: formData.landingPage || null,
-      currentPage: formData.currentPage || null,
-    };
-
-    console.log("[Google Sheets] Payload:", JSON.stringify(payload));
-
-    const response = await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const responseText = await response.text();
-    console.log("[Google Sheets] Response status:", response.status);
-    console.log("[Google Sheets] Response:", responseText);
-
-    if (response.ok) {
-      console.log("[Google Sheets] Data sent successfully!");
-      return { success: true };
-    } else {
-      const error = `Status ${response.status}: ${responseText}`;
-      console.error("[Google Sheets] Error:", error);
-      return { success: false, error };
-    }
-  } catch (error) {
-    const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Google Sheets] Error:", errorMsg);
-    return { success: false, error: errorMsg };
-  }
+  return postCustomerEventToSheet(GOOGLE_SHEETS_WEBHOOK_URL, {
+    timestamp: new Date().toISOString(),
+    name: formData.name,
+    phone: formData.phone,
+    email: formData.email || "",
+    city: formData.city,
+    service: formData.service,
+    message: formData.message || "",
+    images: imageCount,
+    source: sourceInfo,
+    referrer: formData.referrer || "direct",
+    gclid: formData.gclid || null,
+    gbraid: formData.gbraid || null,
+    wbraid: formData.wbraid || null,
+    eventId: formData.eventId || "",
+    eventName: "contact_form",
+    eventType: "form",
+    requestType: formData.requestType || "contact",
+    sourceSite: "rohrreinigung-kraft.de",
+    medium: formData.medium || null,
+    campaign: formData.campaign || null,
+    landingPage: formData.landingPage || null,
+    currentPage: formData.currentPage || null,
+  });
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const formData: ContactFormData = body;
+    const eventId =
+      typeof formData.eventId === "string" ? formData.eventId.trim() : "";
 
     // Quietly accept automated submissions caught by the honeypot field.
     if (formData.website?.trim()) {
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ success: true, recorded: false });
     }
 
     // Validate required fields
@@ -419,28 +380,19 @@ export async function POST(request: NextRequest) {
       !formData.name ||
       !formData.phone ||
       !formData.city ||
-      !formData.service
+      !formData.service ||
+      !/^[A-Za-z0-9._:-]{1,100}$/.test(eventId)
     ) {
       return NextResponse.json(
         {
           error: "Pflichtfelder fehlen",
-          details: "Name, Telefon, Ort und Service sind erforderlich",
+          details: "Name, Telefon, Ort, Service und Event-ID sind erforderlich",
         },
         { status: 400 },
       );
     }
 
-    // Check if RESEND_API_KEY is configured
-    if (!RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is not configured");
-      return NextResponse.json(
-        {
-          error: "Server-Konfigurationsfehler",
-          details: "RESEND_API_KEY fehlt",
-        },
-        { status: 500 },
-      );
-    }
+    formData.eventId = eventId;
 
     // Log tracking data for debugging
     if (formData.gclid) {
@@ -469,32 +421,42 @@ export async function POST(request: NextRequest) {
       imageResult = await uploadAllImages(formData.images);
     }
 
-    // Send email via Resend
-    const emailSent = await sendEmailViaResend(formData, imageResult);
-
-    // Send to Google Sheets (with tracking data)
+    // Google Sheets is the source of truth. Never acknowledge the request if
+    // the dedicated customer-events row was not confirmed.
     const sheetsResult = await sendToGoogleSheets(
       formData,
       imageResult.uploadedUrls.length,
     );
 
-    if (!emailSent) {
+    if (!sheetsResult.success) {
+      console.error("[Google Sheets] Required write failed:", sheetsResult.error);
       return NextResponse.json(
         {
-          error: "E-Mail konnte nicht gesendet werden",
-          details:
-            "Resend API Fehler. Mögliche Ursachen: 1) Domain nicht verifiziert bei Resend 2) RECIPIENT_EMAIL muss die verifizierte Resend E-Mail sein bei Nutzung von onboarding@resend.dev",
+          error: "Anfrage konnte nicht gespeichert werden",
+          details: "Google-Sheets-Ereignis wurde nicht bestätigt",
         },
-        { status: 500 },
+        { status: 502 },
+      );
+    }
+
+    const emailSent = await sendEmailViaResend(formData, imageResult);
+
+    if (!emailSent) {
+      console.error(
+        "[Contact Form] Request recorded in Google Sheets, but email delivery failed:",
+        eventId,
       );
     }
 
     return NextResponse.json({
       success: true,
-      message: "Anfrage erfolgreich gesendet",
+      recorded: true,
+      message: emailSent
+        ? "Anfrage erfolgreich gesendet"
+        : "Anfrage erfolgreich gespeichert",
       emailSent,
+      warning: emailSent ? null : "email_delivery_failed",
       sheetsSent: sheetsResult.success,
-      sheetsError: sheetsResult.error || null,
       imagesUploaded: imageResult.uploadedUrls.length,
       imagesFailed: imageResult.failedCount,
       imageErrors: imageResult.errors,
