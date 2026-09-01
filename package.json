@@ -6,6 +6,7 @@
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "build": "next build",
     "start": "next start",
+    "test": "node --test --experimental-strip-types tests/*.test.mjs",
     "lint": "bunx tsc --noEmit && next lint",
     "format": "bunx biome format --write"
   },

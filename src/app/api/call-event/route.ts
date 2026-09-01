@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { postCustomerEventToSheet } from "@/lib/customer-events-sheet";
 
 const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
@@ -9,6 +10,9 @@ interface DirectCallEventData {
   utmSource?: string | null;
   utmMedium?: string | null;
   utmCampaign?: string | null;
+  gclid?: string | null;
+  gbraid?: string | null;
+  wbraid?: string | null;
   landingPage?: string | null;
   currentPage?: string | null;
   referrer?: string | null;
@@ -22,19 +26,18 @@ export async function POST(request: NextRequest) {
     const body = (await request.json()) as DirectCallEventData;
 
     if (body.eventType !== "direct_call_click") {
-      return NextResponse.json({
-        success: true,
-        recorded: false,
-        reason: "unsupported_event",
-      });
+      return NextResponse.json(
+        { success: false, recorded: false, reason: "unsupported_event" },
+        { status: 400 },
+      );
     }
 
-    if (!GOOGLE_SHEETS_WEBHOOK_URL) {
-      return NextResponse.json({
-        success: true,
-        recorded: false,
-        reason: "sheets_webhook_not_configured",
-      });
+    const eventId = clean(body.eventId, 100);
+    if (!eventId) {
+      return NextResponse.json(
+        { success: false, recorded: false, reason: "event_id_missing" },
+        { status: 400 },
+      );
     }
 
     const source = clean(body.source, 120) || "floating_call_modal";
@@ -51,46 +54,48 @@ export async function POST(request: NextRequest) {
       email: "",
       city: "Nürnberg",
       service: "Telefonischer Kontakt",
-      message:
-        'Klick auf "Jetzt direkt anrufen" im schwebenden Anruf-Dialog (' +
-        source +
-        ").",
+      message: "Klick auf einen Telefonlink (" + source + ").",
       images: 0,
       source: attribution,
       referrer: clean(body.referrer, 500) || "direct",
-      gclid: null,
+      gclid: clean(body.gclid, 200) || null,
+      gbraid: clean(body.gbraid, 200) || null,
+      wbraid: clean(body.wbraid, 200) || null,
       medium: trafficMedium || null,
       campaign: clean(body.utmCampaign, 160) || null,
       landingPage: clean(body.landingPage, 500) || null,
       currentPage: clean(body.currentPage, 500) || null,
-      eventId: clean(body.eventId, 100) || null,
+      eventId,
       eventName: "direct_call_click",
       eventType: "call",
       callStatus: "not_confirmed",
       sourceSite: "rohrreinigung-kraft.de",
     };
 
-    const response = await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      cache: "no-store",
-    });
-    const responseText = await response.text();
+    const result = await postCustomerEventToSheet(
+      GOOGLE_SHEETS_WEBHOOK_URL,
+      payload,
+    );
 
-    if (!response.ok) {
+    if (!result.success) {
       console.error(
         "[Direct call event] Google Sheets webhook failed:",
-        response.status,
-        responseText.slice(0, 300),
+        result.error,
       );
       return NextResponse.json(
-        { success: false, recorded: false },
+        { success: false, recorded: false, reason: result.error },
         { status: 502 },
       );
     }
 
-    return NextResponse.json({ success: true, recorded: true });
+    return NextResponse.json({
+      success: true,
+      recorded: true,
+      eventId,
+      sheetName: result.sheetName,
+      row: result.row,
+      duplicate: result.duplicate === true,
+    });
   } catch (error) {
     console.error("[Direct call event] Error:", error);
     return NextResponse.json(

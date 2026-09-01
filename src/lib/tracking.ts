@@ -7,7 +7,9 @@ declare global {
   }
 }
 
-type TrackingEvent = "kraft_thank_you";
+type TrackingEvent = "thank_you_page";
+const CALL_CLICK_DEDUPLICATION_MS = 1200;
+let lastCallClickAt = 0;
 
 const trackEvent = (
   eventName: TrackingEvent,
@@ -35,71 +37,89 @@ const trackEvent = (
   }
 };
 
-const postDirectCallClickToSheets = (source: string) => {
+const beginCallClick = () => {
+  const now = Date.now();
+  if (now - lastCallClickAt < CALL_CLICK_DEDUPLICATION_MS) return null;
+  lastCallClickAt = now;
+  return crypto.randomUUID();
+};
+
+const postDirectCallClickToSheets = (source: string, eventId: string) => {
   if (typeof window === "undefined") return;
 
   const tracking = getTrackingData();
   const body = JSON.stringify({
     eventType: "direct_call_click",
-    eventId: crypto.randomUUID(),
+    eventId,
     source,
     utmSource: tracking.source,
     utmMedium: tracking.medium,
     utmCampaign: tracking.campaign,
+    gclid: tracking.gclid,
+    gbraid: tracking.gbraid,
+    wbraid: tracking.wbraid,
     landingPage: tracking.landingPage,
     currentPage: tracking.currentPage,
     referrer: tracking.referrer,
   });
-
-  if (
-    typeof navigator.sendBeacon === "function" &&
-    navigator.sendBeacon(
-      "/api/call-event",
-      new Blob([body], { type: "application/json" }),
-    )
-  ) {
-    return;
-  }
 
   void fetch("/api/call-event", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body,
     keepalive: true,
-  }).catch((error) => {
-    if (process.env.NODE_ENV === "development") {
-      console.error("[Sheets] direct_call_click", error);
-    }
-  });
+  })
+    .then((response) => {
+      if (!response.ok && typeof navigator.sendBeacon === "function") {
+        navigator.sendBeacon(
+          "/api/call-event",
+          new Blob([body], { type: "application/json" }),
+        );
+      }
+    })
+    .catch((error) => {
+      if (typeof navigator.sendBeacon === "function") {
+        navigator.sendBeacon(
+          "/api/call-event",
+          new Blob([body], { type: "application/json" }),
+        );
+      }
+      if (process.env.NODE_ENV === "development") {
+        console.error("[Sheets] direct_call_click", error);
+      }
+    });
 };
 
-// Basic engagement event for the final button in the floating call dialog.
-// It is intentionally not a key event and is routed only to GA4.
+// Basic engagement event for telephone links. It stays outside the Google Ads
+// conversion helper, but is recorded in GA4 and Alle Anfragen.
 export const trackDirectCallClick = (source: string) => {
   if (typeof window === "undefined") return;
+  const eventId = beginCallClick();
+  if (!eventId) return;
 
   window.gtag?.("event", "direct_call_click", {
     send_to: "G-SFZFMCJXG2",
     event_category: "engagement",
     event_label: source,
     interaction_type: "direct_call",
-    interaction_location: "floating_call_modal",
+    interaction_location: "telephone_link",
     contact_method: "phone",
     site: "nuernberg",
+    event_id: eventId,
   });
 
-  postDirectCallClickToSheets(source);
+  postDirectCallClickToSheets(source, eventId);
 };
 
-// Compatibility for existing imports. The final modal button still produces
-// exactly one GA4 event.
+// Compatibility for existing imports. The shared click guard keeps each
+// physical telephone-link click to one GA4 and one Sheets event.
 export const trackPhoneClick = trackDirectCallClick;
 
 // Emitted only after /api/contact succeeds and the guarded thank-you page is
 // reached. This is the reliable website-form lead event.
 export const trackThankYouPage = (eventId?: string) => {
   const tracking = getTrackingData();
-  trackEvent("kraft_thank_you", {
+  trackEvent("thank_you_page", {
     event_label: "contact_form_success",
     lead_type: "contact_form",
     contact_method: "form",

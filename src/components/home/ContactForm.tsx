@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -56,6 +56,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [website, setWebsite] = useState("");
+  const pendingEventId = useRef<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -112,7 +113,8 @@ export default function ContactForm() {
 
     // Get complete tracking data including GCLID, source, etc.
     const trackingData = getCompleteTrackingData();
-    const eventId = crypto.randomUUID();
+    const eventId = pendingEventId.current || crypto.randomUUID();
+    pendingEventId.current = eventId;
 
     try {
       const response = await fetch("/api/contact", {
@@ -142,7 +144,8 @@ export default function ContactForm() {
 
       const result = await response.json();
 
-      if (response.ok) {
+      if (response.ok && result.recorded === true) {
+        pendingEventId.current = null;
         sessionStorage.setItem("form_submitted", "true");
         sessionStorage.setItem("kraft_form_event_id", eventId);
         router.push("/thank-you");
